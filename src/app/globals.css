@@ -1,26 +1,71 @@
+/*
+ * PURPOSE: Global styles + Tailwind v4 design tokens (tricolor theme)
+ * USED BY: All pages via root layout
+ * DEPENDS ON: tailwindcss v4
+ *
+ * Tailwind v4 uses @theme blocks in CSS instead of tailwind.config.ts.
+ * Colors follow the Indian tricolor palette: saffron, green, navy.
+ */
+
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ── Custom fonts (loaded via next/font in layout.tsx) ── */
+@theme inline {
+  --font-sans: var(--font-outfit), sans-serif;
+  --font-hindi: var(--font-noto-sans-devanagari), sans-serif;
+  --font-read: var(--font-lexend), sans-serif;
 }
 
+/* ── Tricolor design tokens ── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Saffron family */
+  --color-saffron: #E07020;
+  --color-saffron-glow: #F08830;
+  --color-saffron-pale: #FFF6EE;
+
+  /* Green family */
+  --color-green: #046A38;
+  --color-green-soft: #0A8A4C;
+  --color-green-pale: #EDF8F1;
+
+  /* Navy family */
+  --color-navy: #000080;
+  --color-navy-soft: #1A1A94;
+  --color-navy-pale: #F0F0FA;
+
+  /* Neutrals */
+  --color-ivory: #FAF8F5;
+  --color-cream: #F5F2ED;
+  --color-sandstone: #E8E4DC;
+
+  /* Ink (text) */
+  --color-ink: #1A1714;
+  --color-ink-soft: #3D3730;
+  --color-ink-muted: #7A7168;
+  --color-ink-faint: #B5AEA4;
+  --color-ink-ghost: #D4D0C8;
+
+  /* Accents */
+  --color-gold: #B8860B;
+  --color-gold-pale: #FDF8EC;
+  --color-danger: #C0392B;
+  --color-danger-pale: #FDF0EE;
+}
+
+/* ── Light / dark mode backgrounds ── */
+:root {
+  --background: var(--color-ivory);
+  --foreground: var(--color-ink);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #1A1714;
+    --foreground: #FAF8F5;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
