@@ -5,10 +5,10 @@
  */
 
 import type { Metadata } from "next";
-import { Outfit, Lexend, Noto_Sans_Devanagari } from "next/font/google";
+import { Outfit, Lexend, Noto_Sans_Devanagari, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-/* Primary font for UI */
+/* Primary font for UI (kept for practice/subjects pages) */
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
@@ -27,6 +27,13 @@ const notoHindi = Noto_Sans_Devanagari({
   weight: ["400", "500", "600", "700"],
 });
 
+/* Monospace for numbers/stats */
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+});
+
 export const metadata: Metadata = {
   title: "MYPCS.IN — UPPCS Exam Prep",
   description:
@@ -40,8 +47,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body
-        className={`${outfit.variable} ${lexend.variable} ${notoHindi.variable} font-sans antialiased`}
+        className={`${outfit.variable} ${lexend.variable} ${notoHindi.variable} ${jetbrainsMono.variable} font-sans antialiased`}
+        style={{ background: "#0A0A0F", color: "rgba(255,255,255,0.87)" }}
       >
         {children}
       </body>
