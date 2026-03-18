@@ -1,7 +1,6 @@
 /**
- * PURPOSE: Courses landing — lists all subjects as entry points
+ * PURPOSE: Courses landing — lists all subjects (v12 design)
  * ROUTE:   /courses
- * DEPENDS: api.ts, Nav.tsx, Footer.tsx
  */
 
 import Nav from "@/components/Nav";
@@ -21,47 +20,57 @@ export default async function CoursesPage() {
   return (
     <>
       <Nav />
-      <main className="min-h-screen" style={{ background: "#FAF8F5", color: "#1A1A1A" }}>
+      <main style={{ minHeight: "100vh", background: "#F8F7F4", color: "#171717" }}>
         {/* Breadcrumb */}
-        <div className="max-w-4xl mx-auto px-4 pt-6">
-          <p className="text-xs font-semibold" style={{ color: "#B5AEA4" }}>
-            Courses
-          </p>
+        <div style={{ maxWidth: 1080, margin: "0 auto", padding: "24px 24px 0" }}>
+          <p style={{ fontSize: 13, fontWeight: 500, color: "#A3A3A3" }}>Courses</p>
         </div>
 
         {/* Header */}
-        <section className="py-8 px-4 text-center">
-          <p
-            className="text-xs font-extrabold uppercase tracking-widest flex items-center justify-center gap-2 mb-2"
-            style={{ color: "#E07020" }}
-          >
-            <span className="w-4 h-0.5 rounded" style={{ background: "#E07020" }} />
+        <section style={{ padding: "48px 24px 32px", textAlign: "center" }}>
+          <p style={{
+            fontSize: 12, fontWeight: 700, textTransform: "uppercase" as const,
+            letterSpacing: "0.12em", color: "#C96B28", marginBottom: 12,
+          }}>
             Courses
           </p>
-          <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-2">
+          <h1 style={{
+            fontFamily: "var(--font-serif), 'DM Serif Display', Georgia, serif",
+            fontSize: "clamp(28px, 5vw, 42px)", fontWeight: 400,
+            lineHeight: 1.15, color: "#171717", marginBottom: 8,
+          }}>
             Pick your subject.
           </h1>
-          <p className="text-sm" style={{ color: "#7A7168" }}>
+          <p style={{ fontSize: 15, color: "#6B6B6B" }}>
             Start with a subject, drill into chapters, study the notes.
           </p>
         </section>
 
         {/* Subject cards */}
-        <section className="max-w-4xl mx-auto px-4 pb-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <section style={{ maxWidth: 1080, margin: "0 auto", padding: "0 24px 96px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 20 }}>
             {subjects.map((s) => (
               <a
                 key={s.slug}
                 href={`/courses/${s.slug}`}
-                className="block border rounded-xl p-6 transition-all hover:shadow-lg hover:-translate-y-1"
-                style={{ borderColor: "#E8E4DC", background: "white" }}
+                style={{
+                  display: "block", padding: 28, borderRadius: 16,
+                  background: "#FFFFFF", border: "1px solid rgba(0,0,0,0.06)",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.03)",
+                  transition: "all 0.2s",
+                }}
               >
-                <h2 className="font-extrabold text-lg mb-1">{s.name}</h2>
-                <div className="flex gap-3 text-xs" style={{ color: "#7A7168" }}>
+                <h2 style={{
+                  fontFamily: "var(--font-serif), 'DM Serif Display', Georgia, serif",
+                  fontSize: 22, fontWeight: 400, marginBottom: 6,
+                }}>
+                  {s.name}
+                </h2>
+                <div style={{ display: "flex", gap: 16, fontSize: 13, color: "#6B6B6B" }}>
                   <span>{s.chapter_count} chapters</span>
                   <span>{s.question_count.toLocaleString()} PYQs</span>
                 </div>
-                <div className="mt-4 text-xs font-semibold" style={{ color: "#E07020" }}>
+                <div style={{ marginTop: 20, fontSize: 13, fontWeight: 600, color: "#C96B28" }}>
                   View parts →
                 </div>
               </a>
@@ -69,11 +78,9 @@ export default async function CoursesPage() {
           </div>
 
           {subjects.length === 0 && (
-            <div className="text-center py-16">
-              <p className="text-lg font-bold mb-2">Could not load subjects</p>
-              <p className="text-sm" style={{ color: "#7A7168" }}>
-                Make sure the Django API is running.
-              </p>
+            <div style={{ textAlign: "center", padding: "80px 0" }}>
+              <p style={{ fontSize: 18, fontWeight: 700, marginBottom: 8 }}>Could not load subjects</p>
+              <p style={{ fontSize: 14, color: "#6B6B6B" }}>Make sure the Django API is running.</p>
             </div>
           )}
         </section>

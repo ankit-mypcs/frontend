@@ -1,10 +1,6 @@
 /**
- * PURPOSE: Subject detail — shows parts (e.g., Ancient India, Medieval India) within a subject
+ * PURPOSE: Subject detail — shows parts within a subject (v12 design)
  * ROUTE:   /courses/[subject]  (e.g., /courses/history)
- * DEPENDS: api.ts, Nav.tsx, Footer.tsx
- *
- * Since the API doesn't have a dedicated parts endpoint, we fetch all chapters
- * and group them by part_name to build the hierarchy.
  */
 
 import Nav from "@/components/Nav";
@@ -12,12 +8,8 @@ import Footer from "@/components/Footer";
 import { api } from "@/lib/api";
 import type { ChapterListItem } from "@/lib/api";
 
-/* Helper: convert a name to a URL-safe slug */
 function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
 interface PageProps {
@@ -30,17 +22,12 @@ export default async function SubjectPage({ params }: PageProps) {
 
   try {
     const res = await api.getChapters();
-    chapters = res.results.filter(
-      (ch) => slugify(ch.subject_name) === subject
-    );
-  } catch {
-    /* API down */
-  }
+    chapters = res.results.filter((ch) => slugify(ch.subject_name) === subject);
+  } catch { /* API down */ }
 
-  /* Derive subject name from first chapter */
   const subjectName = chapters[0]?.subject_name || subject;
 
-  /* Group chapters by part_name */
+  /* Group by part */
   const parts: Record<string, { unitChapters: Record<string, ChapterListItem[]> }> = {};
   for (const ch of chapters) {
     const partKey = ch.part_name || "General";
@@ -53,58 +40,68 @@ export default async function SubjectPage({ params }: PageProps) {
   return (
     <>
       <Nav />
-      <main className="min-h-screen" style={{ background: "#FAF8F5", color: "#1A1A1A" }}>
+      <main style={{ minHeight: "100vh", background: "#F8F7F4", color: "#171717" }}>
         {/* Breadcrumb */}
-        <div className="max-w-4xl mx-auto px-4 pt-6">
-          <p className="text-xs font-semibold" style={{ color: "#B5AEA4" }}>
-            <a href="/courses" className="hover:underline" style={{ color: "#E07020" }}>Courses</a>
-            <span className="mx-1">→</span>
+        <div style={{ maxWidth: 1080, margin: "0 auto", padding: "24px 24px 0" }}>
+          <p style={{ fontSize: 13, fontWeight: 500, color: "#A3A3A3" }}>
+            <a href="/courses" style={{ color: "#C96B28" }}>Courses</a>
+            <span style={{ margin: "0 6px" }}>→</span>
             {subjectName}
           </p>
         </div>
 
         {/* Header */}
-        <section className="py-8 px-4 text-center">
-          <p
-            className="text-xs font-extrabold uppercase tracking-widest flex items-center justify-center gap-2 mb-2"
-            style={{ color: "#E07020" }}
-          >
-            <span className="w-4 h-0.5 rounded" style={{ background: "#E07020" }} />
+        <section style={{ padding: "48px 24px 32px", textAlign: "center" }}>
+          <p style={{
+            fontSize: 12, fontWeight: 700, textTransform: "uppercase" as const,
+            letterSpacing: "0.12em", color: "#C96B28", marginBottom: 12,
+          }}>
             Subject
           </p>
-          <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-2">
+          <h1 style={{
+            fontFamily: "var(--font-serif), 'DM Serif Display', Georgia, serif",
+            fontSize: "clamp(28px, 5vw, 48px)", fontWeight: 400,
+            lineHeight: 1.15, color: "#171717", marginBottom: 8,
+          }}>
             {subjectName}
           </h1>
-          <p className="text-sm" style={{ color: "#7A7168" }}>
+          <p style={{ fontSize: 15, color: "#6B6B6B" }}>
             {Object.keys(parts).length} part{Object.keys(parts).length !== 1 ? "s" : ""} · {chapters.length} chapters
           </p>
         </section>
 
-        {/* Parts listing */}
-        <section className="max-w-4xl mx-auto px-4 pb-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* Parts */}
+        <section style={{ maxWidth: 1080, margin: "0 auto", padding: "0 24px 96px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 20 }}>
             {Object.entries(parts).map(([partName, data]) => {
               const chapterCount = Object.values(data.unitChapters).flat().length;
-              const totalFacts = Object.values(data.unitChapters)
-                .flat()
-                .reduce((sum, ch) => sum + ch.fact_count, 0);
+              const totalFacts = Object.values(data.unitChapters).flat().reduce((sum, ch) => sum + ch.fact_count, 0);
 
               return (
                 <a
                   key={partName}
                   href={`/courses/${subject}/${slugify(partName)}`}
-                  className="block border rounded-xl p-6 transition-all hover:shadow-lg hover:-translate-y-1"
-                  style={{ borderColor: "#E8E4DC", background: "white" }}
+                  style={{
+                    display: "block", padding: 28, borderRadius: 16,
+                    background: "#FFFFFF", border: "1px solid rgba(0,0,0,0.06)",
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.03)",
+                    transition: "all 0.2s",
+                  }}
                 >
-                  <h2 className="font-extrabold text-lg mb-1">{partName}</h2>
-                  <div className="flex gap-3 text-xs" style={{ color: "#7A7168" }}>
+                  <h2 style={{
+                    fontFamily: "var(--font-serif), 'DM Serif Display', Georgia, serif",
+                    fontSize: 22, fontWeight: 400, marginBottom: 6,
+                  }}>
+                    {partName}
+                  </h2>
+                  <div style={{ display: "flex", gap: 16, fontSize: 13, color: "#6B6B6B" }}>
                     <span>{chapterCount} chapters</span>
                     <span>{totalFacts} facts</span>
                   </div>
-                  <div className="mt-3 text-xs" style={{ color: "#B5AEA4" }}>
-                    {Object.keys(data.unitChapters).map((u) => u).join(" · ")}
-                  </div>
-                  <div className="mt-3 text-xs font-semibold" style={{ color: "#E07020" }}>
+                  <p style={{ marginTop: 8, fontSize: 13, color: "#A3A3A3" }}>
+                    {Object.keys(data.unitChapters).join(" · ")}
+                  </p>
+                  <div style={{ marginTop: 20, fontSize: 13, fontWeight: 600, color: "#C96B28" }}>
                     View chapters →
                   </div>
                 </a>
@@ -113,11 +110,9 @@ export default async function SubjectPage({ params }: PageProps) {
           </div>
 
           {chapters.length === 0 && (
-            <div className="text-center py-16">
-              <p className="text-lg font-bold mb-2">No chapters found for this subject</p>
-              <a href="/courses" className="text-sm underline" style={{ color: "#E07020" }}>
-                ← Back to courses
-              </a>
+            <div style={{ textAlign: "center", padding: "80px 0" }}>
+              <p style={{ fontSize: 18, fontWeight: 700, marginBottom: 8 }}>No chapters found for this subject</p>
+              <a href="/courses" style={{ fontSize: 14, color: "#C96B28", textDecoration: "underline" }}>← Back to courses</a>
             </div>
           )}
         </section>

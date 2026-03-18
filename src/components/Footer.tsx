@@ -1,60 +1,45 @@
 /**
- * PURPOSE: Site footer with tricolor accent and link columns
- * USED BY: src/app/page.tsx (homepage)
- * DEPENDS ON: nothing
+ * PURPOSE: Site footer matching v12 homepage design
+ * USED BY: All pages
  */
 
 const FOOTER_COLUMNS = [
-  {
-    title: "Product",
-    links: ["Practice", "PYQ Explorer", "Chapter Notes", "Mock Tests"],
-  },
-  {
-    title: "Subjects",
-    links: ["Indian Polity", "History", "Geography", "More Coming"],
-  },
-  {
-    title: "Connect",
-    links: ["About Us", "Telegram", "Contact", "Privacy"],
-  },
+  { title: "Product", links: ["Practice", "PYQ Explorer", "Chapter Notes", "Mock Tests"] },
+  { title: "Subjects", links: ["Indian Polity", "History", "Geography", "More Coming"] },
+  { title: "Connect", links: ["About Us", "Telegram", "Contact", "Privacy"] },
 ];
 
 export default function Footer() {
   return (
-    <footer
-      style={{ background: "#0A0A2A" }}
-      className="text-white/40 pt-12 pb-6 px-4"
-    >
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-        {/* Brand column */}
+    <footer style={{ background: "#0A0F3A", color: "rgba(255,255,255,0.4)", padding: "64px 24px 32px" }}>
+      <div style={{ maxWidth: 1080, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 40 }}>
+        {/* Brand */}
         <div>
-          <div className="font-black text-lg text-white mb-2">
-            my<span style={{ color: "#E07020" }}>pcs</span>.in
+          <div style={{ fontWeight: 900, fontSize: 18, color: "#fff", marginBottom: 8 }}>
+            my<span style={{ color: "#C96B28" }}>pcs</span>.in
           </div>
-          <p className="text-sm leading-relaxed">
-            My Pathway to Civil Services. Built in Nagpur for rural India.
+          <p style={{ fontSize: 14, lineHeight: 1.6 }}>
+            My Pathway to Civil Services.
           </p>
-          {/* Tricolor accent bar */}
-          <div
-            className="h-0.5 w-12 mt-3 rounded-sm"
-            style={{
-              background:
-                "linear-gradient(90deg,#E07020 33%,rgba(255,255,255,0.2) 33%,rgba(255,255,255,0.2) 66%,#0A8A4C 66%)",
-            }}
-          />
+          <div style={{
+            height: 2, width: 48, marginTop: 16, borderRadius: 2,
+            background: "linear-gradient(90deg, #C96B28 33%, rgba(255,255,255,0.2) 33%, rgba(255,255,255,0.2) 66%, #1A7F4B 66%)",
+          }} />
         </div>
 
         {/* Link columns */}
         {FOOTER_COLUMNS.map((col) => (
           <div key={col.title}>
-            <h4 className="text-white/55 text-xs font-bold uppercase tracking-widest mb-3">
+            <h4 style={{
+              color: "rgba(255,255,255,0.55)", fontSize: 12, fontWeight: 700,
+              textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16,
+            }}>
               {col.title}
             </h4>
             {col.links.map((link) => (
               <a
-                key={link}
-                href="#"
-                className="block text-sm py-0.5 hover:text-orange-400 transition-colors"
+                key={link} href="#"
+                style={{ display: "block", fontSize: 14, padding: "3px 0", transition: "color 0.2s" }}
               >
                 {link}
               </a>
@@ -63,10 +48,15 @@ export default function Footer() {
         ))}
       </div>
 
-      {/* Bottom bar */}
-      <div className="max-w-5xl mx-auto mt-8 pt-4 border-t border-white/5 flex flex-col md:flex-row justify-between text-xs">
+      {/* Bottom */}
+      <div style={{
+        maxWidth: 1080, margin: "40px auto 0", paddingTop: 20,
+        borderTop: "1px solid rgba(255,255,255,0.05)",
+        display: "flex", justifyContent: "space-between", fontSize: 12,
+        flexWrap: "wrap", gap: 8,
+      }}>
         <span>&copy; 2026 mypcs.in</span>
-        <span>Made with care in Nagpur for rural India</span>
+        <span>A personalized pathway, for those who dare to serve the roots of India.</span>
       </div>
     </footer>
   );

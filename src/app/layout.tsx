@@ -1,43 +1,49 @@
 /**
- * PURPOSE: Root layout — loads fonts, sets metadata, wraps all pages
+ * PURPOSE: Root layout — loads v12 fonts, sets metadata, wraps all pages
  * USED BY: Next.js App Router (every page)
  * DEPENDS ON: next/font/google, globals.css
+ *
+ * Font stack matches v12 homepage:
+ *   --serif: DM Serif Display (headlines)
+ *   --sans:  Inter (body)
+ *   --mono:  JetBrains Mono (numbers/stats)
  */
 
 import type { Metadata } from "next";
-import { Outfit, Lexend, Noto_Sans_Devanagari, JetBrains_Mono } from "next/font/google";
+import { DM_Serif_Display, Inter, JetBrains_Mono, Noto_Sans_Devanagari } from "next/font/google";
 import "./globals.css";
 
-/* Primary font for UI (kept for practice/subjects pages) */
-const outfit = Outfit({
-  variable: "--font-outfit",
+/* Serif — headlines */
+const dmSerif = DM_Serif_Display({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+/* Sans — body text */
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
-/* Reading font for question stems and explanations */
-const lexend = Lexend({
-  variable: "--font-lexend",
+/* Mono — numbers, stats, codes */
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 /* Hindi text support */
 const notoHindi = Noto_Sans_Devanagari({
-  variable: "--font-noto-sans-devanagari",
+  variable: "--font-hindi",
   subsets: ["devanagari"],
   weight: ["400", "500", "600", "700"],
 });
 
-/* Monospace for numbers/stats */
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-});
-
 export const metadata: Metadata = {
-  title: "MYPCS.IN — UPPCS Exam Prep",
+  title: "mypcs.in — My Pathway to Civil Services",
   description:
-    "Practice 10,000+ previous year questions for UPPCS Prelims & Mains",
+    "UPPCS preparation backed by learning science. Spaced repetition, mastery learning, interleaved practice. 1,178+ PYQs.",
 };
 
 export default function RootLayout({
@@ -47,15 +53,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link
-          href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap"
-          rel="stylesheet"
-        />
-      </head>
       <body
-        className={`${outfit.variable} ${lexend.variable} ${notoHindi.variable} ${jetbrainsMono.variable} font-sans antialiased`}
-        style={{ background: "#0A0A0F", color: "rgba(255,255,255,0.87)" }}
+        className={`${dmSerif.variable} ${inter.variable} ${jetbrainsMono.variable} ${notoHindi.variable} antialiased`}
+        style={{
+          fontFamily: "var(--font-sans), 'Inter', system-ui, sans-serif",
+          background: "#F8F7F4",
+          color: "#333333",
+          lineHeight: 1.65,
+          letterSpacing: "-0.01em",
+        }}
       >
         {children}
       </body>
