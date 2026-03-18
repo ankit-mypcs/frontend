@@ -22,7 +22,7 @@ export default async function SubjectsPage() {
   return (
     <>
       <Nav />
-      <main className="min-h-screen" style={{ background: "#FAF8F5" }}>
+      <main className="min-h-screen" style={{ background: "#FAF8F5", color: "#1A1A1A" }}>
         {/* ── Header ── */}
         <section className="py-12 px-4 text-center">
           <p

@@ -295,7 +295,7 @@ function PracticeContent() {
   return (
     <>
       <Nav />
-      <main className="min-h-screen" style={{ background: "#FAF8F5" }}>
+      <main className="min-h-screen" style={{ background: "#FAF8F5", color: "#1A1A1A" }}>
         {/* ── Top bar: progress + score ── */}
         <div
           className="border-b px-4 py-3"
