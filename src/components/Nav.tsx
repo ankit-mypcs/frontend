@@ -24,15 +24,19 @@ export default function Nav() {
 
         {/* Desktop nav links */}
         <div className="hidden md:flex gap-1">
-          {["Features", "Subjects", "Pricing"].map((item) => (
-            <a
-              key={item}
-              href={"#" + item.toLowerCase()}
+          {[
+            { label: "Chapters", href: "/chapters" },
+            { label: "Subjects", href: "/subjects" },
+            { label: "Practice", href: "/practice" },
+          ].map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
               className="px-3 py-1.5 rounded-md text-sm font-semibold"
               style={{ color: "#7A7168" }}
             >
-              {item}
-            </a>
+              {item.label}
+            </Link>
           ))}
         </div>
 

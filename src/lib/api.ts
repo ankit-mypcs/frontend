@@ -27,23 +27,106 @@ export interface Subject {
   chapter_count: number;
 }
 
-export interface Chapter {
+export interface ChapterListItem {
   id: number;
   name: string;
-  name_hi: string;
-  code: string;
   slug: string;
-  subject_name: string;
+  chapter_number: number;
+  sort_order: number;
   unit_name: string;
-  question_count: number;
+  part_name: string;
+  subject_name: string;
+  fact_count: number;
+  site_count: number;
+  pyq_count: number;
+  is_active: boolean;
+}
+
+export interface Chapter extends ChapterListItem {
+  name_hi?: string;
+  code?: string;
+  question_count?: number;
+}
+
+export interface SubTopic {
+  id: number;
+  name: string;
+  sort_order: number;
 }
 
 export interface Topic {
   id: number;
   name: string;
-  name_hi: string;
+  name_hi?: string;
   slug: string;
   sort_order: number;
+  subtopics?: SubTopic[];
+}
+
+export interface ChapterDetail {
+  id: number;
+  name: string;
+  slug: string;
+  chapter_number: number;
+  sort_order: number;
+  unit_name: string;
+  part_name: string;
+  subject_name: string;
+  topics: Topic[];
+  is_active: boolean;
+}
+
+export interface Fact {
+  id: number;
+  text: string;
+  citation: string;
+  source_sheet: string;
+  sort_order: number;
+  topic_name: string;
+  sub_topic_name: string;
+  state_tags: string[];
+}
+
+export interface SiteItem {
+  id: number;
+  name: string;
+  state_region: string;
+  period: string;
+  key_findings: string;
+  citation: string;
+  topic_name: string;
+}
+
+export interface TimelineEvent {
+  id: number;
+  date_text: string;
+  event: string;
+  citation: string;
+  sort_order: number;
+  topic_name: string;
+}
+
+export interface GlossaryTerm {
+  id: number;
+  term: string;
+  definition: string;
+  citation: string;
+}
+
+export interface ExamIntelEntry {
+  id: number;
+  category: string;
+  detail: string;
+  citation: string;
+  topic_name: string;
+}
+
+export interface Exercise {
+  id: number;
+  exercise_type: string;
+  question: string;
+  source: string;
+  topic_name: string;
 }
 
 export interface Appearance {
@@ -145,10 +228,45 @@ export const api = {
     return apiFetch<PaginatedResponse<Subject>>("/subjects/");
   },
 
-  /** Fetch chapters, optionally filtered by subject ID. */
-  getChapters(subjectId?: number): Promise<PaginatedResponse<Chapter>> {
+  /** Fetch chapters (paginated list with counts). */
+  getChapters(subjectId?: number): Promise<PaginatedResponse<ChapterListItem>> {
     const query = subjectId ? `?unit__subject=${subjectId}` : "";
-    return apiFetch<PaginatedResponse<Chapter>>(`/chapters/${query}`);
+    return apiFetch<PaginatedResponse<ChapterListItem>>(`/chapters/${query}`);
+  },
+
+  /** Fetch chapter detail by slug (includes topic tree). */
+  getChapterDetail(slug: string): Promise<ChapterDetail> {
+    return apiFetch<ChapterDetail>(`/chapters/${slug}/`);
+  },
+
+  /** Fetch facts for a chapter. */
+  getChapterFacts(slug: string): Promise<Fact[]> {
+    return apiFetch<Fact[]>(`/chapters/${slug}/facts/`);
+  },
+
+  /** Fetch sites for a chapter. */
+  getChapterSites(slug: string): Promise<SiteItem[]> {
+    return apiFetch<SiteItem[]>(`/chapters/${slug}/sites/`);
+  },
+
+  /** Fetch timeline events for a chapter. */
+  getChapterTimeline(slug: string): Promise<TimelineEvent[]> {
+    return apiFetch<TimelineEvent[]>(`/chapters/${slug}/timeline/`);
+  },
+
+  /** Fetch glossary terms for a chapter. */
+  getChapterTerms(slug: string): Promise<GlossaryTerm[]> {
+    return apiFetch<GlossaryTerm[]>(`/chapters/${slug}/terms/`);
+  },
+
+  /** Fetch exam intel for a chapter. */
+  getChapterExamIntel(slug: string): Promise<ExamIntelEntry[]> {
+    return apiFetch<ExamIntelEntry[]>(`/chapters/${slug}/exam-intel/`);
+  },
+
+  /** Fetch exercises for a chapter. */
+  getChapterExercises(slug: string): Promise<Exercise[]> {
+    return apiFetch<Exercise[]>(`/chapters/${slug}/exercises/`);
   },
 
   /** Fetch topics for a specific chapter. */
