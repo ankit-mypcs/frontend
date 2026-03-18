@@ -25,8 +25,8 @@ export default function Nav() {
         {/* Desktop nav links */}
         <div className="hidden md:flex gap-1">
           {[
+            { label: "Courses", href: "/courses" },
             { label: "Chapters", href: "/chapters" },
-            { label: "Subjects", href: "/subjects" },
             { label: "Practice", href: "/practice" },
           ].map((item) => (
             <Link
