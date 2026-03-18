@@ -101,9 +101,9 @@ export default function Home() {
 
   useEffect(() => {
     api.getStats().then((stats) => {
-      setTotalQuestions(stats.total_questions);
-      setTotalChapters(stats.total_chapters);
-      setTotalSubjects(stats.total_subjects);
+      setTotalQuestions(stats.prelims_pyqs ?? totalQuestions);
+      setTotalChapters(stats.chapters ?? totalChapters);
+      // subjects count not in stats endpoint — keep default
     }).catch(() => { /* fallback to defaults */ });
   }, []);
 

@@ -91,11 +91,16 @@ export interface CheckAnswerResult {
 }
 
 export interface PlatformStats {
-  total_questions: number;
-  total_subjects: number;
-  total_chapters: number;
-  by_subject: { subject__name: string; count: number }[];
-  by_difficulty: { difficulty: string; count: number }[];
+  chapters: number;
+  topics: number;
+  facts: number;
+  sites: number;
+  timeline_events: number;
+  glossary_terms: number;
+  visuals: number;
+  exercises: number;
+  prelims_pyqs: number;
+  prelims_complete: number;
 }
 
 /** Aliases used by practice page */
