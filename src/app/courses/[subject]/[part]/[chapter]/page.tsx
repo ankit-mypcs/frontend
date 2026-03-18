@@ -26,20 +26,20 @@ const TABS = [
 
 type TabKey = (typeof TABS)[number]["key"];
 
-/* ── Shared styles ── */
+/* ── Shared styles — v12 exact match ── */
 const S = {
   card: {
-    padding: 20, borderRadius: 12, background: "#FFFFFF",
+    padding: 24, borderRadius: 20, background: "#FFFFFF",
     border: "1px solid rgba(0,0,0,0.06)",
-    boxShadow: "0 1px 4px rgba(0,0,0,0.03)",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.03)",
   } as React.CSSProperties,
-  label: { fontSize: 13, color: "#A3A3A3" } as React.CSSProperties,
+  label: { fontSize: 13, color: "#A3A3A3", fontWeight: 500 } as React.CSSProperties,
   serif: {
-    fontFamily: "var(--font-serif), 'DM Serif Display', Georgia, serif",
+    fontFamily: "var(--font-serif, 'DM Serif Display', Georgia, serif)",
     fontWeight: 400,
   } as React.CSSProperties,
   mono: {
-    fontFamily: "var(--font-mono), 'JetBrains Mono', monospace",
+    fontFamily: "var(--font-mono, 'JetBrains Mono', monospace)",
   } as React.CSSProperties,
   saffron: "#C96B28",
   ink: "#171717",
@@ -122,22 +122,22 @@ export default function ChapterNotesPage() {
   return (
     <>
       <Nav />
-      <main style={{ minHeight: "100vh", background: S.cream, color: S.ink }}>
+      <main style={{ minHeight: "100vh", background: S.cream, color: "#333" }}>
         {/* Breadcrumb */}
         <div style={{ maxWidth: 1080, margin: "0 auto", padding: "24px 24px 0" }}>
           <p style={{ fontSize: 13, fontWeight: 500, color: S.ink4 }}>
-            <a href="/courses" style={{ color: S.saffron }}>Courses</a>
-            <span style={{ margin: "0 6px" }}>→</span>
-            <a href={`/courses/${subject}`} style={{ color: S.saffron }}>{chapter.subject_name}</a>
-            <span style={{ margin: "0 6px" }}>→</span>
-            <a href={`/courses/${subject}/${part}`} style={{ color: S.saffron }}>{chapter.part_name}</a>
-            <span style={{ margin: "0 6px" }}>→</span>
+            <a href="/courses" style={{ color: S.saffron, textDecoration: "none" }}>Courses</a>
+            <span style={{ margin: "0 8px", color: "#A3A3A3" }}>→</span>
+            <a href={`/courses/${subject}`} style={{ color: S.saffron, textDecoration: "none" }}>{chapter.subject_name}</a>
+            <span style={{ margin: "0 8px", color: "#A3A3A3" }}>→</span>
+            <a href={`/courses/${subject}/${part}`} style={{ color: S.saffron, textDecoration: "none" }}>{chapter.part_name}</a>
+            <span style={{ margin: "0 8px", color: "#A3A3A3" }}>→</span>
             <span style={{ color: S.ink3 }}>{chapter.name}</span>
           </p>
         </div>
 
         {/* Chapter header */}
-        <section style={{ padding: "24px 24px 24px", borderBottom: `1px solid ${S.creamDark}` }}>
+        <section style={{ padding: "48px 24px 32px", borderBottom: `1px solid ${S.creamDark}` }}>
           <div style={{ maxWidth: 1080, margin: "0 auto" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 4 }}>
               <span style={{
@@ -162,7 +162,7 @@ export default function ChapterNotesPage() {
         {/* Tab bar */}
         <section style={{
           borderBottom: `1px solid ${S.creamDark}`,
-          position: "sticky", top: 59, zIndex: 10, background: S.cream,
+          position: "sticky", top: 63, zIndex: 10, background: S.cream,
         }}>
           <div style={{
             maxWidth: 1080, margin: "0 auto", padding: "0 24px",

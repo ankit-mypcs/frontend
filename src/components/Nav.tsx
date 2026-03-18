@@ -1,7 +1,6 @@
 /**
- * PURPOSE: Navigation bar matching v12 homepage design
+ * PURPOSE: Navigation bar — exact match to v12.html
  * USED BY: All pages
- * DEPENDS ON: next/link
  */
 
 "use client";
@@ -14,7 +13,8 @@ export default function Nav() {
       <div
         style={{
           height: 3,
-          background: "linear-gradient(90deg, #C96B28 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #1A7F4B 66.66%)",
+          background:
+            "linear-gradient(90deg, #C96B28 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #1A7F4B 66.66%)",
           position: "sticky",
           top: 0,
           zIndex: 1001,
@@ -34,7 +34,7 @@ export default function Nav() {
             maxWidth: 1080,
             margin: "0 auto",
             padding: "0 24px",
-            height: 56,
+            height: 60,
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -44,33 +44,32 @@ export default function Nav() {
           <Link
             href="/"
             style={{
-              fontFamily: "var(--font-sans), 'Inter', sans-serif",
-              fontWeight: 900,
-              fontSize: 20,
-              color: "#0A0F3A",
-              letterSpacing: "-0.02em",
+              fontWeight: 800,
+              fontSize: 22,
+              color: "#171717",
+              letterSpacing: "-0.03em",
+              textDecoration: "none",
             }}
           >
             my<span style={{ color: "#C96B28" }}>pcs</span>.in
           </Link>
 
-          {/* Desktop nav links */}
-          <div className="hidden md:flex" style={{ gap: 4 }}>
+          {/* Nav links */}
+          <div style={{ display: "flex", gap: 24 }}>
             {[
               { label: "Courses", href: "/courses" },
-              { label: "Chapters", href: "/chapters" },
               { label: "Practice", href: "/practice" },
+              { label: "Method", href: "/#method" },
             ].map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
                 style={{
-                  padding: "6px 16px",
-                  borderRadius: 8,
                   fontSize: 14,
-                  fontWeight: 600,
+                  fontWeight: 500,
                   color: "#6B6B6B",
-                  transition: "color 0.2s",
+                  transition: "color 0.15s",
+                  textDecoration: "none",
                 }}
               >
                 {item.label}
@@ -78,35 +77,22 @@ export default function Nav() {
             ))}
           </div>
 
-          {/* Auth buttons */}
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <button
-              style={{
-                padding: "8px 20px",
-                borderRadius: 100,
-                fontSize: 14,
-                fontWeight: 600,
-                color: "#333",
-                border: "1px solid rgba(0,0,0,0.08)",
-                background: "#fff",
-              }}
-            >
-              Log In
-            </button>
-            <button
-              style={{
-                padding: "8px 24px",
-                borderRadius: 100,
-                fontSize: 14,
-                fontWeight: 700,
-                color: "#fff",
-                background: "#C96B28",
-                boxShadow: "0 2px 12px rgba(201,107,40,0.2)",
-              }}
-            >
-              Start Free →
-            </button>
-          </div>
+          {/* CTA — dark ink like v12.html */}
+          <Link
+            href="/start"
+            style={{
+              background: "#171717",
+              color: "#fff",
+              fontSize: 14,
+              fontWeight: 600,
+              padding: "10px 22px",
+              borderRadius: 100,
+              transition: "all 0.2s",
+              textDecoration: "none",
+            }}
+          >
+            Start Free →
+          </Link>
         </div>
       </nav>
     </>

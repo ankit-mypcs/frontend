@@ -1,5 +1,5 @@
 /**
- * PURPOSE: Subject detail — shows parts within a subject (v12 design)
+ * PURPOSE: Subject detail — shows parts within a subject (v12 design exact match)
  * ROUTE:   /courses/[subject]  (e.g., /courses/history)
  */
 
@@ -40,37 +40,41 @@ export default async function SubjectPage({ params }: PageProps) {
   return (
     <>
       <Nav />
-      <main style={{ minHeight: "100vh", background: "#F8F7F4", color: "#171717" }}>
+      <main style={{ minHeight: "100vh", background: "#F8F7F4", color: "#333" }}>
         {/* Breadcrumb */}
         <div style={{ maxWidth: 1080, margin: "0 auto", padding: "24px 24px 0" }}>
           <p style={{ fontSize: 13, fontWeight: 500, color: "#A3A3A3" }}>
-            <a href="/courses" style={{ color: "#C96B28" }}>Courses</a>
-            <span style={{ margin: "0 6px" }}>→</span>
+            <a href="/courses" style={{ color: "#C96B28", textDecoration: "none" }}>Courses</a>
+            <span style={{ margin: "0 8px", color: "#A3A3A3" }}>→</span>
             {subjectName}
           </p>
         </div>
 
-        {/* Header */}
-        <section style={{ padding: "48px 24px 32px", textAlign: "center" }}>
+        {/* Header — v12 editorial style */}
+        <section style={{ padding: "96px 24px 48px", textAlign: "center" }}>
           <p style={{
             fontSize: 12, fontWeight: 700, textTransform: "uppercase" as const,
-            letterSpacing: "0.12em", color: "#C96B28", marginBottom: 12,
+            letterSpacing: "0.16em", color: "#C96B28", marginBottom: 48,
           }}>
             Subject
           </p>
           <h1 style={{
-            fontFamily: "var(--font-serif), 'DM Serif Display', Georgia, serif",
-            fontSize: "clamp(28px, 5vw, 48px)", fontWeight: 400,
-            lineHeight: 1.15, color: "#171717", marginBottom: 8,
+            fontFamily: "var(--font-serif, 'DM Serif Display', Georgia, serif)",
+            fontSize: "clamp(34px, 7vw, 68px)", fontWeight: 400,
+            lineHeight: 1.1, color: "#171717", letterSpacing: "-0.02em",
+            marginBottom: 24, maxWidth: 780, marginLeft: "auto", marginRight: "auto",
           }}>
             {subjectName}
           </h1>
-          <p style={{ fontSize: 15, color: "#6B6B6B" }}>
+          <p style={{
+            fontSize: "clamp(17px, 2.5vw, 21px)", color: "#333",
+            maxWidth: 600, margin: "0 auto", lineHeight: 1.65,
+          }}>
             {Object.keys(parts).length} part{Object.keys(parts).length !== 1 ? "s" : ""} · {chapters.length} chapters
           </p>
         </section>
 
-        {/* Parts */}
+        {/* Parts grid */}
         <section style={{ maxWidth: 1080, margin: "0 auto", padding: "0 24px 96px" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 20 }}>
             {Object.entries(parts).map(([partName, data]) => {
@@ -82,26 +86,26 @@ export default async function SubjectPage({ params }: PageProps) {
                   key={partName}
                   href={`/courses/${subject}/${slugify(partName)}`}
                   style={{
-                    display: "block", padding: 28, borderRadius: 16,
+                    display: "block", padding: 28, borderRadius: 20,
                     background: "#FFFFFF", border: "1px solid rgba(0,0,0,0.06)",
                     boxShadow: "0 2px 8px rgba(0,0,0,0.03)",
-                    transition: "all 0.2s",
+                    transition: "all 0.2s", textDecoration: "none", color: "inherit",
                   }}
                 >
                   <h2 style={{
-                    fontFamily: "var(--font-serif), 'DM Serif Display', Georgia, serif",
-                    fontSize: 22, fontWeight: 400, marginBottom: 6,
+                    fontFamily: "var(--font-serif, 'DM Serif Display', Georgia, serif)",
+                    fontSize: 24, fontWeight: 400, marginBottom: 8, color: "#171717",
                   }}>
                     {partName}
                   </h2>
-                  <div style={{ display: "flex", gap: 16, fontSize: 13, color: "#6B6B6B" }}>
+                  <div style={{ display: "flex", gap: 16, fontSize: 13, color: "#6B6B6B", fontWeight: 500 }}>
                     <span>{chapterCount} chapters</span>
                     <span>{totalFacts} facts</span>
                   </div>
-                  <p style={{ marginTop: 8, fontSize: 13, color: "#A3A3A3" }}>
+                  <p style={{ marginTop: 12, fontSize: 13, color: "#A3A3A3", lineHeight: 1.6 }}>
                     {Object.keys(data.unitChapters).join(" · ")}
                   </p>
-                  <div style={{ marginTop: 20, fontSize: 13, fontWeight: 600, color: "#C96B28" }}>
+                  <div style={{ marginTop: 24, fontSize: 13, fontWeight: 600, color: "#C96B28" }}>
                     View chapters →
                   </div>
                 </a>
@@ -110,8 +114,13 @@ export default async function SubjectPage({ params }: PageProps) {
           </div>
 
           {chapters.length === 0 && (
-            <div style={{ textAlign: "center", padding: "80px 0" }}>
-              <p style={{ fontSize: 18, fontWeight: 700, marginBottom: 8 }}>No chapters found for this subject</p>
+            <div style={{ textAlign: "center", padding: "96px 0" }}>
+              <p style={{
+                fontFamily: "var(--font-serif, 'DM Serif Display', Georgia, serif)",
+                fontSize: 22, fontWeight: 400, marginBottom: 12, color: "#171717",
+              }}>
+                No chapters found for this subject
+              </p>
               <a href="/courses" style={{ fontSize: 14, color: "#C96B28", textDecoration: "underline" }}>← Back to courses</a>
             </div>
           )}

@@ -1,5 +1,5 @@
 /**
- * PURPOSE: Site footer matching v12 homepage design
+ * PURPOSE: Site footer — exact match to v12 design
  * USED BY: All pages
  */
 
@@ -15,14 +15,14 @@ export default function Footer() {
       <div style={{ maxWidth: 1080, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 40 }}>
         {/* Brand */}
         <div>
-          <div style={{ fontWeight: 900, fontSize: 18, color: "#fff", marginBottom: 8 }}>
+          <div style={{ fontWeight: 800, fontSize: 22, color: "#fff", marginBottom: 8, letterSpacing: "-0.03em" }}>
             my<span style={{ color: "#C96B28" }}>pcs</span>.in
           </div>
           <p style={{ fontSize: 14, lineHeight: 1.6 }}>
             My Pathway to Civil Services.
           </p>
           <div style={{
-            height: 2, width: 48, marginTop: 16, borderRadius: 2,
+            height: 3, width: 48, marginTop: 16, borderRadius: 2,
             background: "linear-gradient(90deg, #C96B28 33%, rgba(255,255,255,0.2) 33%, rgba(255,255,255,0.2) 66%, #1A7F4B 66%)",
           }} />
         </div>
@@ -39,7 +39,7 @@ export default function Footer() {
             {col.links.map((link) => (
               <a
                 key={link} href="#"
-                style={{ display: "block", fontSize: 14, padding: "3px 0", transition: "color 0.2s" }}
+                style={{ display: "block", fontSize: 14, padding: "3px 0", transition: "color 0.2s", color: "rgba(255,255,255,0.4)", textDecoration: "none" }}
               >
                 {link}
               </a>
