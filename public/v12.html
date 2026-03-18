@@ -110,109 +110,164 @@ button { cursor: pointer; border: none; font: inherit; }
 }
 .nav-cta:hover { background: var(--saffron); transform: translateY(-1px); }
 
-/* ═══ SECTION 1: HERO — ASPIRATIONAL ═══ */
+/* ═══ SECTION 1: HERO — CINEMATIC ═══ */
 .hero {
-  padding: var(--s10) 0 var(--s9);
-  text-align: center;
   position: relative;
-  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,107,40,0.04) 0%, transparent 70%),
-              var(--cream);
+  min-height: 100vh; min-height: 100dvh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center;
+  padding: var(--s10) 0 var(--s8);
+  overflow: hidden;
+  /* Layered background: warm radial glow + subtle mesh */
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 20%, rgba(201,107,40,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 80% 70%, rgba(26,127,75,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(10,15,58,0.03) 0%, transparent 50%),
+    var(--cream);
 }
+/* Subtle animated grain overlay for texture */
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.015'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0;
+}
+/* Decorative tricolor accent line */
+.hero::after {
+  content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 120px; height: 3px; border-radius: 3px;
+  background: linear-gradient(90deg, var(--saffron) 33%, var(--white) 33%, var(--white) 66%, var(--green) 66%);
+  opacity: 0.5;
+}
+.hero > * { position: relative; z-index: 1; }
+
+/* Eyebrow — now the aspiration line */
 .hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
+  display: inline-flex; align-items: center; gap: 10px;
   font-size: 12px; font-weight: 600; text-transform: uppercase;
-  letter-spacing: 0.14em; color: var(--saffron);
-  margin-bottom: var(--s6);
-  padding: 8px 20px; border-radius: 100px;
-  background: var(--saffron-glow);
+  letter-spacing: 0.16em; color: var(--saffron);
+  margin-bottom: var(--s7);
+  padding: 10px 24px; border-radius: 100px;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(201,107,40,0.12);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
 }
 .hero-eyebrow-dot {
   width: 6px; height: 6px; border-radius: 50%;
   background: var(--green);
 }
+
+/* Headline — the biggest visual on the page */
 .hero h1 {
   font-family: var(--serif);
-  font-size: clamp(36px, 7vw, 68px);
-  font-weight: 400; line-height: 1.12;
-  color: var(--ink); letter-spacing: -0.015em;
-  margin-bottom: var(--s6);
+  font-size: clamp(36px, 7vw, 72px);
+  font-weight: 400; line-height: 1.1;
+  color: var(--ink); letter-spacing: -0.02em;
+  margin-bottom: var(--s5);
+  max-width: 800px;
 }
-.hero h1 em { font-style: italic; color: var(--saffron); }
+.hero h1 em {
+  font-style: italic;
+  background: linear-gradient(135deg, var(--saffron) 0%, #E8973A 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
-/* Para 1 — purpose/vision — slightly larger, warmer */
+/* Subheadline — the gap */
 .hero-sub {
-  font-size: clamp(16px, 2.5vw, 19px);
-  color: var(--ink-2); max-width: 620px;
+  font-size: clamp(17px, 2.5vw, 22px);
+  color: var(--ink-2); max-width: 600px;
+  margin: 0 auto var(--s5); line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Value prop */
+.hero-sub-method {
+  font-size: clamp(15px, 2.2vw, 18px);
+  color: var(--ink-3); max-width: 580px;
   margin: 0 auto var(--s4); line-height: 1.7;
 }
-/* Para 2 — product/method — slightly smaller, lighter */
-.hero-sub-method {
-  font-size: clamp(15px, 2.2vw, 17px);
-  color: var(--ink-3); max-width: 600px;
-  margin: 0 auto var(--s5); line-height: 1.7;
-}
-/* Inline stat highlight */
-.hero-stat { font-family: var(--mono); font-weight: 700; color: var(--ink); letter-spacing: -0.02em; }
-/* Three-beat rhythm line */
+
+/* Three-beat rhythm */
 .hero-three-beat {
-  font-size: clamp(14px, 2vw, 16px);
-  font-weight: 600; letter-spacing: 0.02em;
+  font-size: clamp(14px, 1.8vw, 16px);
+  font-weight: 600; letter-spacing: 0.03em;
   color: var(--ink-3);
-  max-width: 520px; margin: 0 auto var(--s7);
-  line-height: 1.7;
+  max-width: 540px; margin: 0 auto var(--s7);
+  line-height: 1.8;
 }
 
-/* Mission signature — below CTAs */
+/* CTA row — glassmorphism buttons */
+.hero-cta-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: var(--s4); flex-wrap: wrap;
+  margin-bottom: var(--s6);
+}
+.hero-btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, var(--saffron) 0%, #D4862A 100%);
+  color: white; font-weight: 700; font-size: 16px; letter-spacing: 0.01em;
+  padding: 18px 40px; border-radius: 100px; transition: all 0.3s;
+  box-shadow: 0 4px 20px rgba(201,107,40,0.25), 0 1px 3px rgba(0,0,0,0.08);
+  position: relative; overflow: hidden;
+}
+.hero-btn-primary::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+  border-radius: inherit;
+}
+.hero-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(201,107,40,0.35), 0 2px 6px rgba(0,0,0,0.1);
+}
+.hero-btn-ghost {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 15px; font-weight: 600; color: var(--ink-2);
+  padding: 18px 32px; border-radius: 100px; transition: all 0.3s;
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.hero-btn-ghost:hover {
+  background: rgba(255,255,255,0.8);
+  border-color: rgba(0,0,0,0.12);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+/* Mission signature — serif italic, the screenshot line */
 .hero-signature {
   font-family: var(--serif); font-style: italic;
-  font-size: clamp(15px, 2.2vw, 18px);
-  color: var(--ink-3); max-width: 500px;
-  margin: 0 auto var(--s7);
-  line-height: 1.5;
-  position: relative;
+  font-size: clamp(15px, 2vw, 18px);
+  color: var(--ink-3); max-width: 480px;
+  margin: 0 auto var(--s6);
+  line-height: 1.5; position: relative;
 }
 .hero-signature::before {
-  content: '';
-  display: block; width: 40px; height: 2px;
-  background: var(--saffron);
+  content: ''; display: block;
+  width: 40px; height: 2px;
+  background: linear-gradient(90deg, var(--saffron), rgba(201,107,40,0.2));
   margin: 0 auto var(--s4);
   border-radius: 2px;
 }
 
-.hero-cta-row {
-  display: flex; align-items: center; justify-content: center;
-  gap: var(--s4); flex-wrap: wrap;
-  margin-bottom: var(--s7);
-}
-.hero-btn-primary {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--saffron); color: white;
-  font-weight: 700; font-size: 16px; letter-spacing: 0.01em;
-  padding: 18px 40px; border-radius: 100px; transition: all 0.25s;
-  box-shadow: 0 4px 24px rgba(201,107,40,0.2);
-}
-.hero-btn-primary:hover {
-  background: var(--saffron-dark); transform: translateY(-2px);
-  box-shadow: 0 8px 36px rgba(201,107,40,0.28);
-}
-.hero-btn-ghost {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 15px; font-weight: 600; color: var(--ink-3);
-  padding: 16px 28px; border-radius: 100px; transition: all 0.2s;
-  border: 1px solid rgba(0,0,0,0.1);
-}
-.hero-btn-ghost:hover { color: var(--ink); border-color: rgba(0,0,0,0.2); }
+/* Proof bar — glassmorphism strip */
 .hero-proof {
-  display: flex; align-items: center; justify-content: center;
-  gap: var(--s6); flex-wrap: wrap;
-  font-size: 13px; color: var(--ink-4); font-weight: 500;
-  margin-bottom: var(--s7);
+  display: inline-flex; align-items: center;
+  gap: var(--s5); flex-wrap: wrap; justify-content: center;
+  font-size: 13px; color: var(--ink-3); font-weight: 500;
+  padding: 14px 32px; border-radius: 100px;
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.03);
 }
 .hero-proof-item {
   display: flex; align-items: center; gap: 6px;
 }
-.hero-proof-num { font-family: var(--mono); font-weight: 700; color: var(--ink-2); font-size: 14px; }
+.hero-proof-num { font-family: var(--mono); font-weight: 700; color: var(--ink); font-size: 14px; }
 
 /* The reality — stats that ground the aspiration */
 .gut-stat {
@@ -614,14 +669,17 @@ button { cursor: pointer; border: none; font: inherit; }
 /* ═══ RESPONSIVE ═══ */
 @media (max-width: 767px) {
   .nav-links { display: none; }
-  .hero { padding: var(--s9) 0 var(--s7); }
-  .hero h1 { font-size: clamp(32px, 9vw, 48px); line-height: 1.15; }
-  .hero-sub, .hero-sub-method { font-size: 16px; }
-  .hero-signature { font-size: 18px; }
+  .hero { min-height: auto; padding: var(--s9) 0 var(--s7); }
+  .hero h1 { font-size: clamp(30px, 9vw, 44px); line-height: 1.15; }
+  .hero-sub { font-size: 17px; }
+  .hero-sub-method { font-size: 15px; }
+  .hero-three-beat { font-size: 14px; }
+  .hero-signature { font-size: 15px; }
   .hero-cta-row { flex-direction: column; }
   .hero-btn-primary { width: 100%; justify-content: center; font-size: 16px; padding: 16px 28px; }
-  .hero-btn-ghost { width: 100%; justify-content: center; }
-  .hero-proof { flex-direction: column; gap: var(--s2); }
+  .hero-btn-ghost { width: 100%; justify-content: center; padding: 14px 24px; }
+  .hero-proof { border-radius: var(--r-lg); padding: 12px 20px; gap: var(--s3); }
+  .hero-proof-item { font-size: 12px; }
   .gut-stat-grid { grid-template-columns: 1fr; gap: var(--s5); }
   .opp-layout { grid-template-columns: 1fr; gap: var(--s6); }
   .pillar { grid-template-columns: 1fr; padding: var(--s5); }
@@ -690,6 +748,12 @@ button { cursor: pointer; border: none; font: inherit; }
     </div>
 
     <div class="hero-signature">For those who dare to serve the roots of India.</div>
+
+    <div class="hero-proof">
+      <span class="hero-proof-item"><span class="hero-proof-num">1,178+</span> real PYQs</span>
+      <span class="hero-proof-item"><span class="hero-proof-num">30</span> years decoded</span>
+      <span class="hero-proof-item"><span class="hero-proof-num">&#8377;0</span> to start</span>
+    </div>
 
   </div>
 
