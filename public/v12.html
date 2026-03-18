@@ -154,12 +154,21 @@ button { cursor: pointer; border: none; font: inherit; }
 }
 /* Inline stat highlight */
 .hero-stat { font-family: var(--mono); font-weight: 700; color: var(--ink); letter-spacing: -0.02em; }
-/* Signature tagline */
+/* Three-beat rhythm line */
+.hero-three-beat {
+  font-size: clamp(14px, 2vw, 16px);
+  font-weight: 600; letter-spacing: 0.02em;
+  color: var(--ink-3);
+  max-width: 520px; margin: 0 auto var(--s7);
+  line-height: 1.7;
+}
+
+/* Mission signature — below CTAs */
 .hero-signature {
   font-family: var(--serif); font-style: italic;
-  font-size: clamp(17px, 2.5vw, 21px);
-  color: var(--ink); max-width: 500px;
-  margin: var(--s5) auto var(--s7);
+  font-size: clamp(15px, 2.2vw, 18px);
+  color: var(--ink-3); max-width: 500px;
+  margin: 0 auto var(--s7);
   line-height: 1.5;
   position: relative;
 }
@@ -657,32 +666,30 @@ button { cursor: pointer; border: none; font: inherit; }
   <div class="container-narrow">
 
     <div class="hero-eyebrow">
-      <span class="hero-eyebrow-dot"></span> Your UPPCS journey starts here
+      <span class="hero-eyebrow-dot"></span> Aspirant today. Administrator tomorrow.
     </div>
 
-    <h1>Aspirant today.<br><em>Administrator tomorrow.</em></h1>
+    <h1>Only <em>1 in 450</em> makes it through.<br>Let&#8217;s make sure you&#8217;re that one.</h1>
 
     <p class="hero-sub">
-      Only <span class="hero-stat">1 in 450</span> aspirants makes it through
-      the Civil Services exam. Not for lack of ability. For lack of the right method.
+      Not for lack of ability. For lack of the right method.
     </p>
+
     <p class="hero-sub-method">
-      mypcs offers a personalized pathway &#8212; a preparation engine
-      where purpose meets precision. Preparation reimagined. Method re-engineered.
-      Relentless focus on what gets you through.
+      mypcs builds your personalized pathway &#8212; where purpose meets precision.
     </p>
-    <div class="hero-signature">A personalized pathway, for those who dare to serve the roots of India.</div>
+
+    <div class="hero-three-beat">
+      Preparation reimagined. Method re-engineered.<br>
+      Relentless focus on what gets you through.
+    </div>
 
     <div class="hero-cta-row">
-      <a href="#try" class="hero-btn-primary">Solve Your First Question &#8594;</a>
-      <a href="#method" class="hero-btn-ghost">See the Method &#8595;</a>
+      <a href="#try" class="hero-btn-primary">Get My Pathway &#8594;</a>
+      <a href="#method" class="hero-btn-ghost">See How It Works &#8595;</a>
     </div>
 
-    <div class="hero-proof">
-      <span class="hero-proof-item"><span class="hero-proof-num">1,178+</span> real PYQs</span>
-      <span class="hero-proof-item"><span class="hero-proof-num">30</span> years decoded</span>
-      <span class="hero-proof-item"><span class="hero-proof-num">&#8377;0</span> to start</span>
-    </div>
+    <div class="hero-signature">For those who dare to serve the roots of India.</div>
 
   </div>
 
