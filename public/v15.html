@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mypcs.in — My Pathway to Civil Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --saffron:#C96B28;--saffron-h:#D4782F;--saffron-glow:rgba(201,107,40,0.07);--saffron-glow2:rgba(201,107,40,0.14);
+  --green:#1A7F4B;--green-soft:rgba(26,127,75,0.07);--green-glow2:rgba(26,127,75,0.13);
+  --red:#C0392B;--red-bg:rgba(192,57,43,0.06);--red-border:rgba(192,57,43,0.12);
+  --cream:#FAF9F6;--white:#FFFFFF;--ink:#141414;--ink-2:#2E2E2E;--ink-3:#6B6B6B;--ink-4:#999;--ink-5:#BFBFBF;
+  --border:rgba(0,0,0,0.06);--border-2:rgba(0,0,0,0.10);
+  --serif:'DM Serif Display',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:17px;scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.tricolor{height:3px;position:fixed;top:0;left:0;right:0;z-index:10001;background:linear-gradient(90deg,var(--saffron) 33.33%,var(--cream) 33.33%,var(--cream) 66.66%,var(--green) 66.66%)}
+.nav{position:fixed;top:3px;left:0;right:0;z-index:1000;background:rgba(250,249,246,0.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);transition:box-shadow .3s var(--ease)}
+.nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.04)}
+.nav-inner{max-width:900px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--serif);font-size:1.1rem;color:var(--ink);text-decoration:none}
+.nav-logo em{font-style:italic;color:var(--saffron)}
+.nav-links{display:flex;gap:4px}
+.nav-links a{font-size:.72rem;font-weight:600;color:var(--ink-3);text-decoration:none;padding:6px 11px;border-radius:8px;transition:all .15s}
+.nav-links a:hover{color:var(--ink);background:rgba(0,0,0,0.03)}
+.nav-cta{padding:8px 18px;border-radius:100px;font-size:.72rem;font-weight:700;color:var(--white);background:var(--saffron);border:none;cursor:pointer;font-family:var(--sans);transition:all .2s var(--ease)}
+.nav-cta:hover{background:var(--saffron-h);transform:translateY(-1px);box-shadow:0 4px 16px rgba(201,107,40,0.25)}
+.hero{padding:70px 24px 0;text-align:center;min-height:auto;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hero-map{position:absolute;top:50%;left:50%;transform:translate(-50%,-48%);width:520px;height:auto;opacity:.035;pointer-events:none;z-index:0}
+.hero-inner{max-width:660px;margin:0 auto;position:relative;z-index:1}
+.hero-headline{margin-bottom:16px}
+.hero-headline .line{font-family:var(--serif);font-size:clamp(1.8rem,5vw,3.2rem);font-weight:400;line-height:1.2;letter-spacing:-.02em;color:var(--ink)}
+.hero-headline .typed-wrap{display:inline}
+.hero-headline .typed-word{color:var(--saffron);font-style:italic;display:inline;position:relative}
+.hero-headline .typed-word::after{content:'';position:absolute;bottom:2px;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--saffron),rgba(201,107,40,0.15));border-radius:2px}
+.typed-cursor{display:inline-block;width:2.5px;height:.78em;background:var(--saffron);margin-left:2px;border-radius:2px;animation:blink .6s step-end infinite;vertical-align:baseline;position:relative;top:.06em}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.hero-tagline{font-family:var(--serif);font-size:1.05rem;font-style:italic;color:var(--saffron);text-align:center;margin-bottom:8px}
+.hero-sub{font-size:.82rem;font-weight:500;color:var(--ink-2);margin-bottom:12px;max-width:460px;margin-left:auto;margin-right:auto;text-align:center;line-height:1.6}
+.hero-exams-line{font-size:.54rem;color:var(--ink-4);margin-bottom:10px;text-align:center;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.hero-trust{font-size:.46rem;color:var(--ink-4);text-align:center;margin-top:10px}
+.hero-link{font-size:.72rem;font-weight:600;color:var(--ink-3);text-decoration:none;transition:color .15s}
+.hero-link:hover{color:var(--saffron)}
+.hero-ctas{display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap}
+.btn{padding:13px 26px;border-radius:100px;font-size:.84rem;font-weight:700;cursor:pointer;font-family:var(--sans);transition:all .25s var(--ease);border:none;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-pathway{background:var(--saffron);color:var(--white);box-shadow:0 2px 8px rgba(201,107,40,0.15);overflow:hidden}
+.btn-pathway:hover{background:var(--saffron-h);transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,107,40,0.22)}
+.btn-pathway .path-icon{display:flex;align-items:center}
+.btn-pathway .path-dots{display:flex;gap:3px;align-items:center;opacity:0;width:0;transition:all .3s var(--ease);overflow:hidden}
+.btn-pathway .path-dots span{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,0.5);flex-shrink:0}
+.btn-pathway:hover .path-dots{opacity:1;width:24px;margin-right:2px}
+.btn-pathway .path-arrow{transition:transform .25s var(--ease);font-size:1rem}
+.btn-pathway:hover .path-arrow{transform:translateX(2px)}
+.btn-ghost{background:none;border:1.5px solid var(--border-2);color:var(--ink-2)}
+.btn-ghost:hover{border-color:var(--ink-3);color:var(--ink)}
+.btn-ghost .arrow{font-size:.9rem;transition:transform .2s var(--ease)}
+.btn-ghost:hover .arrow{transform:translateY(2px)}
+.btn-sm{font-size:.72rem;padding:10px 20px}
+.section{padding:60px 24px}
+.section-in{max-width:900px;margin:0 auto}
+.section-border{border-top:1px solid var(--border)}
+.section-label{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-4);margin-bottom:6px}
+.section-h{font-family:var(--serif);font-size:clamp(1.4rem,3.2vw,2rem);line-height:1.2;color:var(--ink);margin-bottom:8px}
+.section-h em{font-style:italic;color:var(--saffron)}
+.section-sub{font-size:.82rem;color:var(--ink-3);max-width:440px;line-height:1.6;margin-bottom:24px}
+/* VS COMPACT */
+.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;position:relative}
+.vs-col-header{text-align:center;padding:8px;margin-bottom:6px;border-radius:10px 10px 0 0}
+.vs-col.trad .vs-col-header{background:var(--red-bg)}
+.vs-col.mypcs .vs-col-header{background:var(--green-soft)}
+.vs-col-title{font-family:var(--serif);font-size:.95rem}
+.vs-col.trad .vs-col-title{color:var(--red)}.vs-col.mypcs .vs-col-title{color:var(--green)}
+.vs-col-sub{font-size:.58rem;color:var(--ink-4);margin-top:2px}
+.vs-scene{background:var(--white);border:1px solid var(--border);border-radius:16px;min-height:300px;overflow:hidden;position:relative}
+.vs-panel{position:absolute;top:0;left:0;right:0;bottom:0;padding:18px;opacity:0;transform:scale(.97);transition:opacity .4s var(--ease),transform .4s var(--ease);pointer-events:none;display:flex;flex-direction:column}
+.vs-panel.active{opacity:1;transform:scale(1);pointer-events:auto}
+.vs-step-label{text-align:center;margin-top:8px;font-size:.68rem;font-weight:600;color:var(--ink-3);min-height:32px}
+.vs-step-label .sn{font-family:var(--mono);color:var(--saffron);font-size:.56rem;display:block;margin-bottom:2px}
+.vs-dots{display:flex;justify-content:center;gap:5px;margin-bottom:10px}
+.vs-dot{width:7px;height:7px;border-radius:50%;background:var(--border-2);transition:all .3s var(--ease);cursor:pointer}
+.vs-dot.active{background:var(--saffron);width:22px;border-radius:4px}
+.vs-flow-bar{display:flex;justify-content:center;gap:0;background:var(--white);border:1px solid var(--border);border-radius:100px;overflow:hidden;max-width:480px;margin:14px auto 0}
+.vs-flow-item{padding:8px 0;text-align:center;flex:1;border-right:1px solid var(--border);cursor:pointer;transition:background .2s var(--ease)}
+.vs-flow-item:last-child{border-right:none}
+.vs-flow-item.active{background:var(--saffron-glow)}
+.vs-flow-item .fn{font-family:var(--mono);font-size:.44rem;font-weight:700;color:var(--saffron);display:block}
+.vs-flow-item .fl{font-size:.52rem;font-weight:700;color:var(--ink-2)}
+/* T1: COST */
+.cost-stack{display:flex;flex-direction:column;gap:5px;justify-content:center;height:100%}
+.cost-row{display:flex;justify-content:space-between;align-items:center;padding:6px 12px;border-radius:6px;background:rgba(0,0,0,0.02);font-size:.7rem;color:var(--ink-3)}
+.cost-row .cost-amt{font-family:var(--mono);font-weight:600;color:var(--red);font-size:.72rem}
+.cost-total{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-radius:8px;background:var(--red-bg);border:1px solid var(--red-border);margin-top:4px}
+.cost-total .cost-label{font-size:.78rem;font-weight:700;color:var(--red)}
+.cost-total .cost-amt{font-family:var(--mono);font-size:1.1rem;font-weight:700;color:var(--red)}
+.cost-note{font-size:.58rem;color:var(--ink-4);text-align:center;margin-top:5px;font-style:italic}
+/* M1: ANIMATED JOURNEY */
+.journey-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:6px}
+.journey-phone{width:120px;height:190px;border-radius:14px;border:2px solid var(--border-2);background:var(--white);position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.06)}
+.journey-phone .notch{width:40px;height:4px;border-radius:2px;background:var(--border-2);position:absolute;top:6px;left:50%;transform:translateX(-50%)}
+.journey-screen{position:absolute;top:16px;left:6px;right:6px;bottom:6px;border-radius:6px;overflow:hidden}
+.journey-frame{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;opacity:0;transform:scale(.9);transition:all .5s var(--ease);padding:6px}
+.journey-frame.active{opacity:1;transform:scale(1)}
+.jf-icon{font-size:1.4rem}
+.jf-text{font-size:.46rem;font-weight:700;color:var(--ink-2);text-align:center;line-height:1.3}
+.jf-sub{font-size:.38rem;color:var(--ink-4);text-align:center}
+/* Dashboard mini */
+.jf-dash{display:flex;flex-direction:column;gap:3px;width:100%}
+.jf-bar-row{display:flex;align-items:center;gap:3px}
+.jf-bar-label{font-size:.32rem;color:var(--ink-4);width:32px;text-align:right}
+.jf-bar-track{flex:1;height:4px;border-radius:2px;background:rgba(0,0,0,0.04)}
+.jf-bar-fill{height:100%;border-radius:2px;transition:width 1s var(--ease)}
+/* Mastery badge */
+.jf-badge{padding:3px 8px;border-radius:100px;font-size:.4rem;font-weight:800;background:var(--green-soft);color:var(--green);border:1px solid var(--green-glow2)}
+.journey-label{font-size:.5rem;font-weight:700;color:var(--ink-3);text-align:center;margin-top:4px}
+.journey-dots{display:flex;gap:4px;justify-content:center}
+.journey-dot{width:5px;height:5px;border-radius:50%;background:var(--border-2);transition:all .3s}
+.journey-dot.active{background:var(--green);width:14px;border-radius:3px}
+.journey-note{font-size:.6rem;color:var(--green);font-weight:600;text-align:center}
+/* T2: CURVES */
+.curve-container{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:6px}
+.curve-title{font-family:var(--serif);font-size:.82rem;color:var(--ink-2);margin-bottom:4px}
+.curve-bars{display:flex;align-items:flex-end;gap:6px;height:120px;padding:0 10px}
+.curve-col{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1}
+.curve-bar{width:100%;border-radius:3px 3px 0 0;transition:height 1s var(--ease);min-width:32px}
+.curve-bar.trad-bar{background:linear-gradient(180deg,rgba(192,57,43,0.25),var(--red))}
+.curve-bar.sr-bar.high{background:linear-gradient(180deg,rgba(26,127,75,0.25),var(--green))}
+.curve-bar.sr-bar.dip{background:linear-gradient(180deg,rgba(201,107,40,0.25),var(--saffron))}
+.curve-pct{font-family:var(--mono);font-size:.6rem;font-weight:700}
+.curve-pct.red{color:var(--red)}.curve-pct.green{color:var(--green)}
+.curve-time{font-size:.52rem;color:var(--ink-4);font-weight:600;text-align:center}
+.curve-cite{font-size:.5rem;color:var(--ink-5);font-style:italic;text-align:center}
+.sr-marker{font-size:.44rem;font-weight:700;color:var(--saffron);text-align:center;margin-top:1px}
+/* T3: OVERLOAD + TELEGRAM */
+.overload-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:6px}
+.overload-top{display:flex;gap:8px;width:100%;height:160px}
+.pdf-rain{position:relative;flex:1;overflow:hidden}
+.pdf-item{position:absolute;padding:3px 6px;border-radius:4px;background:var(--white);border:1px solid var(--border);font-size:.52rem;font-weight:600;color:var(--ink-3);box-shadow:0 1px 3px rgba(0,0,0,0.03);opacity:0;animation:pdfFall 3s ease-in-out infinite;white-space:nowrap}
+.pdf-item::before{content:'▪ ';color:var(--red)}
+@keyframes pdfFall{0%{opacity:0;transform:translateY(-10px) rotate(-2deg)}10%{opacity:1}80%{opacity:1}100%{opacity:.2;transform:translateY(140px) rotate(2deg)}}
+/* Telegram with animated messages */
+.tg-chat{flex:1.1;background:#E8ECF0;border-radius:8px;display:flex;flex-direction:column;overflow:hidden;font-size:.54rem;position:relative}
+.tg-header{display:flex;align-items:center;gap:4px;padding:5px 8px;background:#5B9BD5;color:white;font-weight:700;font-size:.52rem;flex-shrink:0}
+.tg-header .tg-icon{font-size:.56rem}
+.tg-body{padding:5px;display:flex;flex-direction:column;gap:4px;overflow:hidden;flex:1}
+.tg-msg{padding:4px 7px;border-radius:6px;max-width:90%;line-height:1.3;color:var(--ink-2);opacity:0;transform:translateY(8px);animation:tgSlide .4s var(--ease) forwards}
+.tg-msg.them{background:var(--white);align-self:flex-start}
+.tg-msg.me{background:#DCF8C6;align-self:flex-end}
+.tg-msg .tg-name{font-weight:700;color:#5B9BD5;font-size:.44rem;display:block}
+.tg-msg .tg-time{font-size:.38rem;color:var(--ink-5);float:right;margin-left:4px;margin-top:2px}
+@keyframes tgSlide{to{opacity:1;transform:translateY(0)}}
+.tg-unread{position:absolute;bottom:5px;right:5px;background:var(--red);color:white;font-size:.42rem;font-weight:800;padding:2px 6px;border-radius:100px;opacity:0;animation:tgSlide .3s var(--ease) 3.5s forwards}
+.trad-cap{font-size:.65rem;color:var(--red);font-weight:600;text-align:center}
+/* M3: NOTES */
+.m-fact{padding:6px 8px;border-radius:6px;margin-bottom:4px;border-left:3px solid transparent;font-size:.64rem;color:var(--ink-2);line-height:1.4;transition:all .35s var(--ease)}
+.m-fact.hl{background:var(--saffron-glow);border-left-color:var(--saffron)}
+.m-fact .src{font-size:.48rem;color:var(--ink-4);display:block;margin-top:2px}
+.m-fact .pyq{font-size:.48rem;color:var(--saffron);font-weight:600}
+.m-head{font-family:var(--serif);font-size:.82rem;margin-bottom:5px}
+.m-head-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.m-free-badge{font-size:.46rem;font-weight:700;padding:2px 6px;border-radius:100px;background:var(--green-soft);color:var(--green)}
+/* T4: NO INTELLIGENCE */
+.blind-stack{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px}
+.blind-big{font-family:var(--serif);font-size:1rem;color:var(--ink);text-align:center;line-height:1.3}
+.blind-items{display:flex;flex-direction:column;gap:4px;width:100%}
+.blind-item{display:flex;align-items:center;gap:7px;padding:6px 10px;border-radius:6px;background:rgba(0,0,0,0.02);font-size:.62rem;color:var(--ink-3)}
+.blind-item .ico{font-size:.65rem;min-width:16px;text-align:center}
+.blind-item .x-mark{color:var(--red);font-weight:800;font-size:.65rem;min-width:14px;text-align:center}
+/* M4: SMART FEATURES */
+.smart-stack{display:flex;flex-direction:column;justify-content:center;height:100%;gap:6px}
+.smart-feature{padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--white);transition:all .3s var(--ease)}
+.smart-feature.active-f{border-color:var(--saffron-glow2);background:var(--saffron-glow)}
+.smart-feature-head{display:flex;align-items:center;gap:6px;margin-bottom:3px}
+.smart-feature-icon{font-size:.7rem;min-width:16px;text-align:center}
+.smart-feature-title{font-size:.65rem;font-weight:700;color:var(--ink)}
+.smart-feature-tag{font-size:.42rem;font-weight:700;padding:2px 6px;border-radius:100px;margin-left:auto;background:var(--saffron-glow);color:var(--saffron);letter-spacing:.03em}
+.smart-feature-desc{font-size:.56rem;color:var(--ink-3);line-height:1.4;padding-left:22px}
+.smart-feature-data{display:flex;gap:8px;padding-left:22px;margin-top:3px}
+.smart-feature-stat{font-family:var(--mono);font-size:.5rem;font-weight:600;color:var(--saffron)}
+/* T5: PASSIVE */
+.lec-center{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:10px}
+.lec-box{width:82%;aspect-ratio:16/9;background:var(--ink);border-radius:8px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.lec-box .play{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center}
+.lec-box .play::after{content:'▶';color:rgba(255,255,255,0.5);font-size:.7rem;margin-left:2px}
+.lec-bar-track{position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,0.1)}
+.lec-bar-fill{height:100%;width:35%;background:var(--red)}
+.lec-dur{position:absolute;bottom:5px;right:6px;font-family:var(--mono);font-size:.48rem;color:rgba(255,255,255,0.4)}
+.lec-tag{position:absolute;top:5px;left:6px;font-size:.42rem;font-weight:700;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:.05em}
+.lec-stats{display:flex;gap:16px}
+.lec-stat{text-align:center}
+.lec-stat .n{font-family:var(--mono);font-size:1rem;font-weight:700;color:var(--red)}
+.lec-stat .l{font-size:.56rem;color:var(--ink-4)}
+.lec-note{font-size:.62rem;color:var(--red);text-align:center;font-weight:600}
+/* M5: MASTERY */
+.mastery-stack{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px}
+.mastery-big{font-family:var(--serif);font-size:1.25rem;text-align:center;line-height:1.2}
+.mastery-sub{font-size:.68rem;color:var(--ink-3);text-align:center}
+.mastery-loop{display:flex;align-items:center;gap:4px;margin:4px 0;flex-wrap:wrap;justify-content:center}
+.mastery-step{padding:4px 11px;border-radius:100px;font-size:.56rem;font-weight:700;background:var(--green-soft);color:var(--green);border:1px solid var(--green-glow2)}
+.mastery-arrow{font-size:.56rem;color:var(--ink-5)}
+.mastery-facts{display:flex;flex-direction:column;gap:4px;width:100%;max-width:260px}
+.mastery-fact{display:flex;align-items:center;gap:7px;padding:6px 10px;border-radius:6px;background:var(--green-soft);font-size:.62rem;color:var(--ink-2)}
+.mastery-fact .vf{color:var(--green);font-weight:700;min-width:14px;text-align:center}
+/* ═══ TEST SERIES ═══ */
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.test-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px;transition:all .2s var(--ease);display:flex;flex-direction:column;gap:6px}
+.test-card:hover{border-color:var(--border-2);box-shadow:0 3px 14px rgba(0,0,0,0.05)}
+.test-card.featured{border-color:var(--saffron-glow2);background:linear-gradient(180deg,var(--saffron-glow) 0%,var(--white) 40%)}
+.test-card-top{display:flex;align-items:center;justify-content:space-between}
+.test-card-icon{color:var(--saffron)}
+.test-card-badge{font-size:.44rem;font-weight:700;padding:2px 8px;border-radius:100px;letter-spacing:.06em}
+.free-badge{background:var(--green-soft);color:var(--green)}
+.pi-badge{background:var(--saffron-glow);color:var(--saffron)}
+.test-card-title{font-family:var(--serif);font-size:.9rem}
+.test-card-meta{font-family:var(--mono);font-size:.52rem;color:var(--ink-4)}
+.test-card-desc{font-size:.62rem;color:var(--ink-3);line-height:1.5}
+.test-card-stats{display:flex;gap:10px;font-size:.52rem;color:var(--ink-4);margin-top:auto;padding-top:8px;border-top:1px solid var(--border)}
+.test-stat-n{font-family:var(--mono);font-weight:700;color:var(--ink-2)}
+.test-stat-free{color:var(--green);font-weight:700}
+.test-stat-premium{color:var(--saffron);font-weight:700}
+/* ═══ COURSES ═══ */
+.exam-filters{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+.exam-pill{padding:6px 16px;border-radius:100px;font-size:.62rem;font-weight:700;background:var(--white);border:1px solid var(--border);color:var(--ink-3);cursor:pointer;transition:all .2s var(--ease);font-family:var(--sans)}
+.exam-pill:hover{border-color:var(--ink-4);color:var(--ink-2)}
+.exam-pill.active{background:var(--saffron);border-color:var(--saffron);color:var(--white)}
+.courses-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.course-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px;transition:all .2s var(--ease);display:flex;flex-direction:column;gap:5px}
+.course-card:hover{border-color:var(--border-2);box-shadow:0 2px 10px rgba(0,0,0,0.04)}
+.course-card.coming{opacity:.45}.course-card.coming:hover{opacity:.6}
+.course-card.special{border-left:3px solid var(--saffron)}
+.cc-top{display:flex;align-items:center;gap:6px}
+.cc-name{font-family:var(--serif);font-size:.85rem;line-height:1.2;flex:1}
+.cc-status{font-size:.4rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 6px;border-radius:100px;white-space:nowrap;flex-shrink:0}
+.cc-status.live{background:var(--green-soft);color:var(--green)}
+.cc-status.partial{background:var(--saffron-glow);color:var(--saffron)}
+.cc-status.soon{background:rgba(0,0,0,0.03);color:var(--ink-5)}
+.cc-meta{font-size:.54rem;color:var(--ink-4);line-height:1.3}
+.cc-stats{display:flex;gap:6px;font-size:.5rem;color:var(--ink-4)}
+.cc-stat-n{font-family:var(--mono);font-weight:600;color:var(--ink-2)}
+.cc-units{font-size:.56rem;color:var(--ink-4);line-height:1.35}
+.cc-units span{color:var(--green);font-weight:700}
+.cc-units .next{color:var(--saffron);font-weight:700}
+.cc-radar{font-size:.44rem;color:var(--red);display:flex;align-items:center;gap:3px}
+.cc-radar .r-icon{font-size:.5rem}
+/* ═══ 30-YEAR INSIGHTS ═══ */
+.belief{display:flex;gap:18px;padding:22px 0;border-bottom:1px solid var(--border)}
+.belief:last-child{border-bottom:none}
+.belief-num{font-family:var(--mono);font-size:.62rem;font-weight:600;color:var(--ink-5);min-width:24px;padding-top:3px}
+.belief-title{font-family:var(--serif);font-size:.92rem;margin-bottom:5px;line-height:1.3}
+.belief-text{font-size:.74rem;color:var(--ink-3);line-height:1.7}
+/* ═══ PRICING ═══ */
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:560px;margin:0 auto}
+.price-card{border-radius:18px;padding:28px 22px;position:relative}
+.price-card.free{background:var(--white);border:1px solid var(--border)}
+.price-card.premium{background:var(--white);border:2px solid var(--saffron);box-shadow:0 6px 24px rgba(201,107,40,0.08)}
+.price-card.premium::before{content:'EARLY BIRD';position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--saffron);color:var(--white);padding:2px 12px;border-radius:100px;font-size:.42rem;font-weight:800;letter-spacing:.1em}
+.price-tier{font-size:.48rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-4);margin-bottom:6px}
+.price-num{font-family:var(--serif);font-size:2rem;color:var(--ink);margin-bottom:2px}
+.price-num .per{font-family:var(--sans);font-size:.75rem;font-weight:400;color:var(--ink-3)}
+.price-note{font-size:.58rem;color:var(--ink-4);margin-bottom:16px}
+.price-list{list-style:none;margin-bottom:20px}
+.price-list li{font-size:.68rem;padding:3px 0;display:flex;align-items:center;gap:6px;color:var(--ink-2)}
+.price-list .y{color:var(--green);font-weight:700;font-size:.7rem}
+.price-list .n{color:var(--ink-5);font-size:.7rem}
+.price-list .dim{color:var(--ink-5)}
+.btn-block{width:100%;text-align:center;justify-content:center}
+/* ═══ FAQ ═══ */
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{padding:14px 0;font-weight:700;font-size:.78rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .15s}
+.faq-q:hover{color:var(--saffron)}
+.faq-q .arrow{font-size:.65rem;color:var(--ink-4);transition:transform .2s var(--ease)}
+.faq-q.open .arrow{transform:rotate(180deg)}
+.faq-a{padding:0 0 14px;font-size:.72rem;color:var(--ink-3);line-height:1.7;display:none}
+.faq-a.show{display:block}
+/* ═══ FINAL CTA ═══ */
+.final-cta{padding:60px 24px;text-align:center;border-top:1px solid var(--border)}
+.final-h{font-family:var(--serif);font-size:clamp(1.2rem,2.8vw,1.7rem);line-height:1.3;margin-bottom:8px}
+.final-h em{font-style:italic;color:var(--saffron)}
+.final-sub{font-size:.75rem;color:var(--ink-3);margin-bottom:20px;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.7}
+/* ═══ ICON SYSTEM ═══ */
+.ico-svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle;flex-shrink:0}
+.ico-svg.lg{width:22px;height:22px}
+.ico-svg.sm{width:13px;height:13px}
+.cc-icon-letter{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.5rem;font-weight:700;color:var(--saffron);background:var(--saffron-glow);flex-shrink:0}
+/* ═══ SPARKLINE ═══ */
+.sparkline-wrap{display:inline-flex;align-items:center;gap:8px;margin-top:6px;padding:6px 10px;border-radius:8px;background:rgba(192,57,43,0.04);border:1px solid rgba(192,57,43,0.08)}
+.sparkline-label{font-size:.42rem;color:var(--red);font-weight:600;line-height:1.2}
+/* ═══ FOOTER ═══ */
+.footer{padding:24px;border-top:1px solid var(--border)}
+.footer-in{max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;font-size:.58rem;color:var(--ink-4)}
+.footer-links{display:flex;gap:14px}
+.footer-links a{color:var(--ink-4);text-decoration:none}
+.footer-links a:hover{color:var(--ink-2)}
+.rv{opacity:0;transform:translateY(14px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.rv.vis{opacity:1;transform:translateY(0)}
+.rv-d1{transition-delay:.06s}.rv-d2{transition-delay:.12s}.rv-d3{transition-delay:.18s}.rv-d4{transition-delay:.24s}
+@media(max-width:768px){
+  .pricing-grid{grid-template-columns:1fr;max-width:320px}
+  .footer-in{flex-direction:column;gap:10px;text-align:center}
+  html{font-size:16px}.nav-links{display:none}.nav-inner{height:50px}
+  .hero{padding:62px 20px 24px;min-height:auto}
+  .hero-headline .line{font-size:clamp(1.6rem,8vw,2.4rem)}
+  .hero-map{width:340px;opacity:.025}
+  .hero-ctas{flex-direction:column;align-items:center}
+  .hero-ctas .btn{width:100%;max-width:280px;justify-content:center}
+  .section{padding:40px 20px}
+  .vs-grid{grid-template-columns:1fr;gap:12px}
+  .vs-flow-bar{flex-direction:column;border-radius:12px;max-width:260px}
+  .vs-flow-item{border-right:none;border-bottom:1px solid var(--border)}.vs-flow-item:last-child{border-bottom:none}
+  .overload-top{flex-direction:column;height:auto}.pdf-rain{height:90px}.tg-chat{min-height:90px}
+  .courses-grid{grid-template-columns:1fr}
+  .test-grid{grid-template-columns:1fr}
+}
+@media(max-width:380px){.hero{padding:58px 16px 20px}.hero-headline .line{font-size:1.5rem}.btn{padding:12px 22px;font-size:.8rem}}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.typed-cursor{animation:none;opacity:1}}
+</style>
+</head>
+<body>
+<div class="tricolor"></div>
+<nav class="nav" id="nav"><div class="nav-inner">
+  <a href="#" class="nav-logo"><em>mypcs</em>.in</a>
+  <div class="nav-links"><a href="#crisis">Why Us</a><a href="#subjects">Courses</a><a href="#tests">Test Series</a><a href="#insights">Insights</a><a href="#pricing">Pricing</a></div>
+  <button class="nav-cta">Enter My Pathway →</button>
+</div></nav>
+<section class="hero">
+  <svg class="hero-map" viewBox="60 50 500 550" xmlns="http://www.w3.org/2000/svg">
+    <path d="M220,80 L260,72 L290,78 L330,70 L360,80 L390,74 L410,85 L430,90 L440,110 L460,120 L470,140 L480,160 L490,180 L500,200 L505,230 L500,260 L490,290 L480,310 L470,330 L460,350 L440,370 L420,390 L400,410 L380,430 L360,445 L340,455 L320,470 L300,490 L290,510 L285,530 L290,550 L280,560 L260,550 L250,530 L240,510 L220,500 L200,490 L180,475 L160,455 L145,435 L135,410 L125,385 L120,360 L115,340 L112,310 L110,280 L112,250 L115,220 L120,195 L130,170 L140,150 L155,130 L170,115 L185,100 L200,88 Z" fill="var(--ink)" opacity="0.04" stroke="var(--ink)" stroke-width="0.5" stroke-opacity="0.06"/>
+    <path d="M250,170 L310,160 L350,175 L370,200 L360,230 L330,250 L290,255 L260,240 L240,215 L238,190 Z" fill="var(--saffron)" opacity="0.06"/>
+    <path d="M355,185 L390,180 L410,195 L415,220 L400,240 L370,245 L350,230 L348,205 Z" fill="var(--saffron)" opacity="0.05"/>
+    <path d="M210,245 L280,235 L330,250 L345,280 L330,310 L290,320 L240,315 L210,295 L205,265 Z" fill="var(--saffron)" opacity="0.04"/>
+    <path d="M145,170 L200,155 L245,170 L250,210 L240,245 L205,260 L170,250 L145,225 L138,195 Z" fill="var(--saffron)" opacity="0.04"/>
+  </svg>
+  <div class="hero-inner">
+    <p class="hero-exams-line rv">For UPPCS · BPSC · MPPCS · RAS aspirants</p>
+    <div class="hero-headline rv rv-d1"><div class="line">Aspirant today.<br><span class="typed-wrap"><span class="typed-word" id="typed-post"></span><span class="typed-cursor"></span></span><br>tomorrow.</div></div>
+    <p class="hero-tagline rv rv-d2">This is your pathway.</p>
+    <p class="hero-sub rv rv-d2">Pathway Intelligence™ decodes 30 years of exam patterns into your personal preparation engine. Browse courses free. Login when you're ready.</p>
+    <div class="hero-ctas rv rv-d3">
+      <a href="#" class="btn btn-pathway">Enter My Pathway — Free <span class="path-icon"><span class="path-dots"><span></span><span></span><span></span><span></span></span><span class="path-arrow">→</span></span></a>
+      <a href="#subjects" class="hero-link">Browse courses free ↓</a>
+    </div>
+    <p class="hero-trust rv rv-d3">WhatsApp OTP · Phone OTP · Gmail login. No password needed.</p>
+  </div>
+</section>
+<!-- VS COMPARISON -->
+<section class="section section-border" id="crisis"><div class="section-in">
+  <div style="text-align:center" class="rv">
+    <div class="section-label">Why Us</div>
+    <h2 class="section-h" style="max-width:480px;margin:0 auto 8px">You're preparing. But are you <em>preparing right?</em></h2>
+    <p class="section-sub" style="margin:0 auto 20px">See the gap between passive coaching and Pathway Intelligence™.</p>
+  </div>
+  <div class="vs-dots rv rv-d1"><div class="vs-dot active" onclick="goVS(0)"></div><div class="vs-dot" onclick="goVS(1)"></div><div class="vs-dot" onclick="goVS(2)"></div><div class="vs-dot" onclick="goVS(3)"></div><div class="vs-dot" onclick="goVS(4)"></div></div>
+  <div class="vs-grid rv rv-d3">
+    <div class="vs-col trad">
+      <div class="vs-col-header"><div class="vs-col-title">The Coaching Trap</div><div class="vs-col-sub">What ₹3.5 lakh buys you</div></div>
+      <div class="vs-scene">
+        <div class="vs-panel active" id="t1"><div class="cost-stack"><div class="cost-row"><span>Institute fees</span><span class="cost-amt" id="c1">₹0</span></div><div class="cost-row"><span>Rent (₹8K/mo)</span><span class="cost-amt" id="c2">₹0</span></div><div class="cost-row"><span>Food (₹5K/mo)</span><span class="cost-amt" id="c3">₹0</span></div><div class="cost-row"><span>Books, tests, transport</span><span class="cost-amt" id="c4">₹0</span></div><div class="cost-total"><span class="cost-label">Year 1 Total</span><span class="cost-amt" id="c-total">₹0</span></div><div class="cost-note">Median UP family income: ₹2.5–3.5 lakh/year</div></div></div>
+        <div class="vs-panel" id="t2"><div class="curve-container"><div class="curve-title">After a 3-hour lecture, you remember:</div><div class="curve-bars"><div class="curve-col"><div class="curve-pct red" id="tc1">100%</div><div class="curve-bar trad-bar" id="tb1" style="height:0"></div><div class="curve-time">Start</div></div><div class="curve-col"><div class="curve-pct red" id="tc2">—</div><div class="curve-bar trad-bar" id="tb2" style="height:0"></div><div class="curve-time">20 min</div></div><div class="curve-col"><div class="curve-pct red" id="tc3">—</div><div class="curve-bar trad-bar" id="tb3" style="height:0"></div><div class="curve-time">1 hour</div></div><div class="curve-col"><div class="curve-pct red" id="tc4">—</div><div class="curve-bar trad-bar" id="tb4" style="height:0"></div><div class="curve-time">1 day</div></div><div class="curve-col"><div class="curve-pct red" id="tc5">—</div><div class="curve-bar trad-bar" id="tb5" style="height:0"></div><div class="curve-time">1 week</div></div><div class="curve-col"><div class="curve-pct red" id="tc6">—</div><div class="curve-bar trad-bar" id="tb6" style="height:0"></div><div class="curve-time">1 month</div></div></div><div class="curve-cite">Ebbinghaus (1885), Murre &amp; Dros (2015)</div></div></div>
+        <div class="vs-panel" id="t3"><div class="overload-wrap"><div class="overload-top"><div class="pdf-rain" id="pdf-rain"></div><div class="tg-chat" id="tg-chat"><div class="tg-header"><span class="tg-icon"><svg class="ico-svg sm" viewBox="0 0 24 24" stroke="white"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span> UPPCS Warriors 2027 (847)</div><div class="tg-body" id="tg-body"></div><div class="tg-unread" id="tg-unread">147</div></div></div><div class="trad-cap">50+ groups. 200+ random PDFs. Nothing organized.</div></div></div>
+        <div class="vs-panel" id="t4"><div class="blind-stack"><div class="blind-big">Zero intelligence. Blind preparation.</div><div class="blind-items"><div class="blind-item"><span class="x-mark">✕</span>No topic-wise trend analysis</div><div class="blind-item"><span class="x-mark">✕</span>No idea which topics repeat every 3 years</div><div class="blind-item"><span class="x-mark">✕</span>Same syllabus for everyone — no personalization</div><div class="blind-item"><span class="x-mark">✕</span>You discover weak spots in the exam hall</div><div class="blind-item"><span class="x-mark">✕</span>15 years of patterns — invisible to you</div></div></div></div>
+        <div class="vs-panel" id="t5"><div class="lec-center"><div class="lec-box"><div class="play"></div><div class="lec-bar-track"><div class="lec-bar-fill"></div></div><div class="lec-dur">2:47:15</div><div class="lec-tag">Recorded from live class</div></div><div class="lec-stats"><div class="lec-stat"><span class="n">200+</span><span class="l">hrs of recordings</span></div><div class="lec-stat"><span class="n">Zero</span><span class="l">mastery tracking</span></div></div><div class="lec-note">Passive consuming. No feedback. No mastery.</div></div></div>
+      </div>
+      <div class="vs-step-label" id="trad-label"><span class="sn">01 — The Cost</span>₹3.5 lakh/year. More than a median family earns.</div>
+    </div>
+    <div class="vs-col mypcs">
+      <div class="vs-col-header"><div class="vs-col-title">Pathway Intelligence™</div><div class="vs-col-sub">Study less. Retain more. Master every topic.</div></div>
+      <div class="vs-scene">
+        <div class="vs-panel active" id="m1"><div class="journey-wrap"><div class="journey-phone"><div class="notch"></div><div class="journey-screen"><div class="journey-frame active" id="jf1"><div class="jf-icon"><svg class="ico-svg lg" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div><div class="jf-text">Open mypcs.in</div><div class="jf-sub">on any device</div></div><div class="journey-frame" id="jf2"><div class="jf-icon"><svg class="ico-svg lg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 019.9-1"/></svg></div><div class="jf-text">Login with OTP</div><div class="jf-sub">no password needed</div></div><div class="journey-frame" id="jf3"><div class="jf-text" style="font-size:.42rem">Your Dashboard</div><div class="jf-dash"><div class="jf-bar-row"><div class="jf-bar-label">History</div><div class="jf-bar-track"><div class="jf-bar-fill" id="jb1" style="width:0;background:var(--green)"></div></div></div><div class="jf-bar-row"><div class="jf-bar-label">Polity</div><div class="jf-bar-track"><div class="jf-bar-fill" id="jb2" style="width:0;background:var(--saffron)"></div></div></div><div class="jf-bar-row"><div class="jf-bar-label">Eco</div><div class="jf-bar-track"><div class="jf-bar-fill" id="jb3" style="width:0;background:var(--red)"></div></div></div></div></div><div class="journey-frame" id="jf4"><div class="jf-icon"><svg class="ico-svg lg" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div><div class="jf-text">Study micro-notes</div><div class="jf-sub">5 min per topic</div></div><div class="journey-frame" id="jf5"><div class="jf-icon"><svg class="ico-svg lg" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg></div><div class="jf-text">Practice PYQs</div><div class="jf-sub">linked to what you read</div></div><div class="journey-frame" id="jf6"><div class="jf-badge">✓ MASTERY: 88%</div><div class="jf-text" style="margin-top:4px">Stone Age — Owned</div><div class="jf-sub">move to next topic</div></div></div></div><div class="journey-dots" id="jdots"><div class="journey-dot active"></div><div class="journey-dot"></div><div class="journey-dot"></div><div class="journey-dot"></div><div class="journey-dot"></div><div class="journey-dot"></div></div><div class="journey-note">₹999/year. Free tier forever.</div></div></div>
+        <div class="vs-panel" id="m2"><div class="curve-container"><div class="curve-title">With spaced repetition, you remember:</div><div class="curve-bars"><div class="curve-col"><div class="curve-pct green" id="sc1">100%</div><div class="curve-bar sr-bar high" id="sb1" style="height:0"></div><div class="curve-time">Learn</div></div><div class="curve-col"><div class="curve-pct green" id="sc2">—</div><div class="curve-bar sr-bar dip" id="sb2" style="height:0"></div><div class="curve-time">Dip</div><div class="sr-marker">↑ review</div></div><div class="curve-col"><div class="curve-pct green" id="sc3">—</div><div class="curve-bar sr-bar high" id="sb3" style="height:0"></div><div class="curve-time">Day 3</div></div><div class="curve-col"><div class="curve-pct green" id="sc4">—</div><div class="curve-bar sr-bar dip" id="sb4" style="height:0"></div><div class="curve-time">Dip</div><div class="sr-marker">↑ review</div></div><div class="curve-col"><div class="curve-pct green" id="sc5">—</div><div class="curve-bar sr-bar high" id="sb5" style="height:0"></div><div class="curve-time">Week 2</div></div><div class="curve-col"><div class="curve-pct green" id="sc6">—</div><div class="curve-bar sr-bar high" id="sb6" style="height:0"></div><div class="curve-time">Month 1</div></div></div><div class="curve-cite">Karpicke (Science, 2008): 80% vs 36% retention</div></div></div>
+        <div class="vs-panel" id="m3"><div style="height:100%"><div class="m-head-row"><div class="m-head">Stone Age · Palaeolithic</div><span class="m-free-badge">Free today</span></div><div class="m-fact hl" id="mf1">Robert Bruce Foote discovered the first Palaeolithic tool at Pallavaram, 1863.<span class="src">RS p.20 · TN p.2</span> <span class="pyq">→ UPPCS 2015</span></div><div class="m-fact" id="mf2">Belan Valley, Mirzapur — all 3 Stone Age phases in sequence.<span class="src">RS p.21 · ML p.43</span> <span class="pyq">→ UPPCS 2016, 2020</span></div><div class="m-fact" id="mf3">Bhimbetka — all phases + paintings. UNESCO.<span class="src">RS p.20 · TN p.3</span> <span class="pyq">→ Asked 7 times</span></div><div class="m-fact" id="mf4">Mehrgarh (~7000 BCE) — earliest Neolithic. Wheat, barley.<span class="src">ML p.49 · TN p.7</span> <span class="pyq">→ UPPCS 2019</span></div></div></div>
+        <div class="vs-panel" id="m4"><div class="smart-stack"><div class="smart-feature active-f" id="sf1"><div class="smart-feature-head"><span class="smart-feature-icon"><svg class="ico-svg sm" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="smart-feature-title">15-Year Topic Analytics</span><span class="smart-feature-tag core">PI™</span></div><div class="smart-feature-desc">See exactly how many times each topic was asked, which years, and the trend direction. Know where marks are hiding.</div><div class="smart-feature-data"><span class="smart-feature-stat">274 topics tracked</span><span class="smart-feature-stat">·</span><span class="smart-feature-stat">15 yrs of data</span></div></div><div class="smart-feature" id="sf2"><div class="smart-feature-head"><span class="smart-feature-icon"><svg class="ico-svg sm" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></span><span class="smart-feature-title">Repeat Radar</span><span class="smart-feature-tag new">PI™</span></div><div class="smart-feature-desc">Flags topics due for a repeat based on historical cycles. "Mauryan Empire" — asked 7 times, last in 2021. Due now.</div><div class="smart-feature-data"><span class="smart-feature-stat">37% marks predictable</span><span class="smart-feature-stat">·</span><span class="smart-feature-stat">pattern-detected</span></div></div><div class="smart-feature" id="sf3"><div class="smart-feature-head"><span class="smart-feature-icon"><svg class="ico-svg sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span><span class="smart-feature-title">Personal Pathway</span><span class="smart-feature-tag core">PI™</span></div><div class="smart-feature-desc">Pathway Intelligence™ knows your strengths and gaps. It prioritizes weak topics, skips what you've mastered. Your syllabus, reordered for you.</div></div></div></div>
+        <div class="vs-panel" id="m5"><div class="mastery-stack"><div class="mastery-big">Mastery, not just exposure.</div><div class="mastery-sub">Pathway Intelligence™ tracks every topic. You don't move on until you own it.</div><div class="mastery-loop"><span class="mastery-step">Read</span><span class="mastery-arrow">→</span><span class="mastery-step">Solve</span><span class="mastery-arrow">→</span><span class="mastery-step">Review</span><span class="mastery-arrow">→</span><span class="mastery-step">Master ✓</span></div><div class="mastery-facts"><div class="mastery-fact"><span class="vf">✓</span>Active recall after every micro-note</div><div class="mastery-fact"><span class="vf">✓</span>Spaced repetition at optimal intervals</div><div class="mastery-fact"><span class="vf">✓</span>Weak spots flagged in real time</div></div></div></div>
+      </div>
+      <div class="vs-step-label" id="mypcs-label"><span class="sn">01 — The Cost</span>₹999/year. Study from home. Free tier forever.</div>
+    </div>
+  </div>
+  <div class="vs-flow-bar rv rv-d4">
+    <div class="vs-flow-item active" onclick="goVS(0)"><span class="fn">01</span><span class="fl">Cost</span></div>
+    <div class="vs-flow-item" onclick="goVS(1)"><span class="fn">02</span><span class="fl">Retention</span></div>
+    <div class="vs-flow-item" onclick="goVS(2)"><span class="fn">03</span><span class="fl">Content</span></div>
+    <div class="vs-flow-item" onclick="goVS(3)"><span class="fn">04</span><span class="fl">Intelligence</span></div>
+    <div class="vs-flow-item" onclick="goVS(4)"><span class="fn">05</span><span class="fl">Mastery</span></div>
+  </div>
+</div></section>
+<!-- ═══ COURSES ═══ -->
+<section class="section section-border" id="subjects"><div class="section-in">
+  <div style="text-align:center" class="rv">
+    <div class="section-label">Your Syllabus</div>
+    <h2 class="section-h" style="max-width:480px;margin:0 auto 8px">Browse freely. <em>No login needed.</em></h2>
+    <p class="section-sub" style="margin:0 auto 16px">Read notes, explore chapters, check PYQs — all open. Sign up when you want to track progress and unlock your pathway.</p>
+  </div>
+  <div class="exam-filters rv rv-d1" id="exam-filters">
+    <button class="exam-pill active" onclick="filterExam('all',this)">All Exams</button>
+    <button class="exam-pill" onclick="filterExam('uppcs',this)">UPPCS</button>
+    <button class="exam-pill" onclick="filterExam('bpsc',this)">BPSC</button>
+    <button class="exam-pill" onclick="filterExam('mppcs',this)">MPPCS</button>
+    <button class="exam-pill" onclick="filterExam('ras',this)">RAS</button>
+  </div>
+  <div class="courses-grid rv rv-d2" id="courses-grid"></div>
+</div></section>
+<!-- ═══ TEST SERIES ═══ -->
+<section class="section section-border" id="tests"><div class="section-in">
+  <div style="text-align:center" class="rv">
+    <div class="section-label">Test Series</div>
+    <h2 class="section-h" style="max-width:480px;margin:0 auto 8px">Practice like it's <em>exam day.</em></h2>
+    <p class="section-sub" style="margin:0 auto 24px">Real timing. Real negative marking. Pathway Intelligence™ picks questions from your weak spots.</p>
+  </div>
+  <div class="test-grid rv rv-d1">
+    <div class="test-card"><div class="test-card-top"><div class="test-card-icon"><svg class="ico-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div><div class="test-card-badge free-badge">STEP 1</div></div><div class="test-card-title">Diagnostic Test</div><div class="test-card-meta">20 questions · 25 minutes · on signup</div><div class="test-card-desc">AI-selected questions across key topics. Calibrates your strengths and weak areas. Sets your personal study plan baseline.</div><div class="test-card-stats"><span><span class="test-stat-n">20</span> Qs</span><span><span class="test-stat-n">AI</span> selected</span><span class="test-stat-free">Free</span></div></div>
+    <div class="test-card featured"><div class="test-card-top"><div class="test-card-icon"><svg class="ico-svg" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg></div><div class="test-card-badge pi-badge">PI™</div></div><div class="test-card-title">Subject Mock</div><div class="test-card-meta">25 questions · 30 minutes · per subject</div><div class="test-card-desc">Topic-wise tests that adapt to your mastery level. Repeat Radar flags high-probability questions. Exam-filtered — sees only your selected exams.</div><div class="test-card-stats"><span><span class="test-stat-n">⅓</span> negative</span><span><span class="test-stat-n">XP</span> earned</span><span class="test-stat-premium">Premium</span></div></div>
+    <div class="test-card featured"><div class="test-card-top"><div class="test-card-icon"><svg class="ico-svg" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="test-card-badge pi-badge">PI™</div></div><div class="test-card-title">Full Prelims Mock</div><div class="test-card-meta">150 questions · 2 hours · exam conditions</div><div class="test-card-desc">Mixed subjects, real UPPCS/BPSC paper structure, -0.66 negative marking. Exam day should feel like practice day.</div><div class="test-card-stats"><span><span class="test-stat-n">150</span> Qs</span><span><span class="test-stat-n">-0.66</span> marking</span><span class="test-stat-premium">Premium</span></div></div>
+  </div>
+  <div style="text-align:center;margin-top:20px" class="rv rv-d2">
+    <a href="#" class="btn btn-pathway btn-sm">Enter My Pathway — Free <span class="path-icon"><span class="path-dots"><span></span><span></span><span></span><span></span></span><span class="path-arrow">→</span></span></a>
+  </div>
+</div></section>
+<!-- ═══ 30-YEAR INSIGHTS ═══ -->
+<section class="section section-border" id="insights"><div class="section-in" style="max-width:620px;margin:0 auto">
+  <div class="section-label rv">What 30 Years of Exam Data Taught Us</div>
+  <h2 class="section-h rv rv-d1" style="max-width:500px;font-size:clamp(1.5rem,3.5vw,2.2rem)">The exam has a pattern. Most aspirants <em>never see it.</em></h2>
+  <div style="margin-top:28px">
+    <div class="belief rv rv-d2"><div class="belief-num">01</div><div><div class="belief-title">The same topics keep coming back.</div><div class="belief-text">We analyzed 1,178 questions across 30 years. A small set of topics accounts for the majority of what's asked. We mapped every one of them.</div><div class="sparkline-wrap"><svg width="120" height="32" viewBox="0 0 120 32"><polyline points="0,2 8,2 16,4 24,3 32,8 40,6 48,12 56,10 64,14 72,11 80,18 88,16 96,22 104,20 112,28 120,30" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round"/><circle cx="0" cy="2" r="2" fill="var(--red)"/><circle cx="120" cy="30" r="2" fill="var(--red)"/></svg><span class="sparkline-label">Ebbinghaus curve: 79% forgotten<br>after 31 days without review</span></div></div></div>
+    <div class="belief rv rv-d2"><div class="belief-num">02</div><div><div class="belief-title">Most aspirants prepare blind.</div><div class="belief-text">Without knowing which chapters the exam favors, you treat every page equally. Some chapters appear five times more than others. mypcs shows you which.</div></div></div>
+    <div class="belief rv rv-d3"><div class="belief-num">03</div><div><div class="belief-title">Your weakness is your biggest opportunity.</div><div class="belief-text">Most aspirants avoid hard chapters. We surface them first — because that's exactly where the marks are hiding.</div></div></div>
+    <div class="belief rv rv-d3"><div class="belief-num">04</div><div><div class="belief-title">You don't need another lecture. You need Pathway Intelligence.</div><div class="belief-text">Take a diagnostic test. Get an AI-generated study plan based on your weak areas and time commitment. Daily goals, XP tracking, and a system that adapts every time you practice.</div></div></div>
+  </div>
+</div></section>
+<!-- ═══ PRICING ═══ -->
+<section class="section section-border" id="pricing"><div class="section-in" style="text-align:center">
+  <div class="section-label rv">Pricing</div>
+  <h2 class="section-h rv rv-d1" style="max-width:380px;margin:0 auto 8px">Less than <em>₹3/day.</em></h2>
+  <p class="section-sub rv rv-d2" style="margin:0 auto 28px">₹999/year. 50× cheaper than coaching. Less than a chai per day.</p>
+  <div class="pricing-grid rv rv-d3">
+    <div class="price-card free"><div class="price-tier">Free Forever</div><div class="price-num">₹0</div><div class="price-note">Browse everything. No card. No catch.</div><ul class="price-list"><li><span class="y">✓</span> Browse all courses & notes</li><li><span class="y">✓</span> 3 PYQs / day</li><li><span class="y">✓</span> Diagnostic test</li><li><span class="y">✓</span> Basic XP & streak tracking</li><li class="dim"><span class="n">✕</span> AI study plan</li><li class="dim"><span class="n">✕</span> Pathway Intelligence™</li><li class="dim"><span class="n">✕</span> Full test series</li></ul><button class="btn btn-ghost btn-block btn-sm">Browse Free</button></div>
+    <div class="price-card premium"><div class="price-tier" style="color:var(--saffron)">Premium</div><div class="price-num">₹999<span class="per">/year</span></div><div class="price-note">₹2.73/day — less than a chai. <s style="color:var(--red)">₹1,499</s></div><div style="font-size:.44rem;font-weight:700;color:var(--red);margin-bottom:12px">Early Bird ends April 30, 2026</div><ul class="price-list"><li><span class="y">✓</span> Unlimited PYQ practice</li><li><span class="y">✓</span> All 11 subjects</li><li><span class="y">✓</span> Pathway Intelligence™ engine</li><li><span class="y">✓</span> AI-generated study plan</li><li><span class="y">✓</span> Repeat Radar + predictions</li><li><span class="y">✓</span> Full test series + mocks</li><li><span class="y">✓</span> XP, leaderboard, weakness map</li></ul><button class="btn btn-pathway btn-block btn-sm">Enter My Pathway — ₹999 <span class="path-icon"><span class="path-dots"><span></span><span></span><span></span><span></span></span><span class="path-arrow">→</span></span></button></div>
+  </div>
+</div></section>
+<!-- ═══ FAQ ═══ -->
+<section class="section section-border" id="faq"><div class="section-in" style="max-width:620px;margin:0 auto">
+  <h2 class="section-h rv" style="text-align:center">Common questions.</h2>
+  <div style="margin-top:24px">
+    <div class="faq-item rv"><div class="faq-q" onclick="toggleFaq(this)">What makes this different from Testbook or Unacademy? <span class="arrow">▾</span></div><div class="faq-a">They sell lectures. We built Pathway Intelligence™ — 30 years of topic analytics, Repeat Radar, and a personal study plan that adapts to your weak areas. Same science as Duolingo, built for state PCS.</div></div>
+    <div class="faq-item rv rv-d1"><div class="faq-q" onclick="toggleFaq(this)">Do I need to sign up to read notes? <span class="arrow">▾</span></div><div class="faq-a">No. Browse courses, read chapters, explore PYQs — all open with no login. Sign up when you want to track progress, get a study plan, and unlock your personal pathway.</div></div>
+    <div class="faq-item rv rv-d2"><div class="faq-q" onclick="toggleFaq(this)">How do I sign up? <span class="arrow">▾</span></div><div class="faq-a">WhatsApp OTP, Phone SMS OTP, or Gmail — whichever you prefer. No password to remember. Takes 30 seconds.</div></div>
+    <div class="faq-item rv rv-d3"><div class="faq-q" onclick="toggleFaq(this)">Will it work on slow internet and cheap phones? <span class="arrow">▾</span></div><div class="faq-a">Built for it. Text-first, zero video, pages under 200KB — tested on 2G and ₹6,000 Android phones.</div></div>
+    <div class="faq-item rv rv-d4"><div class="faq-q" onclick="toggleFaq(this)">Only Ancient History is fully live. Worth joining? <span class="arrow">▾</span></div><div class="faq-a">Ancient History is our complete pilot — notes, PYQs, test series, the full Pathway Intelligence™ experience. 559 Polity PYQs are also imported. New subjects ship every month.</div></div>
+  </div>
+</div></section>
+<!-- ═══ FINAL CTA ═══ -->
+<section class="final-cta"><div style="max-width:620px;margin:0 auto">
+  <h2 class="final-h rv">Your pathway to civil services starts <em>now.</em></h2>
+  <p class="final-sub rv rv-d1">Browse freely. Sign up with WhatsApp OTP. Take a diagnostic test. Get your personal study plan. ₹0.</p>
+  <a href="#" class="btn btn-pathway rv rv-d2">Enter My Pathway — Free <span class="path-icon"><span class="path-dots"><span></span><span></span><span></span><span></span></span><span class="path-arrow">→</span></span></a>
+  <p class="hero-trust rv rv-d3">WhatsApp OTP · Phone OTP · Gmail. No password needed.</p>
+</div></section>
+<footer class="footer"><div class="footer-in">
+  <span>© 2026 mypcs.in · Built in Nagpur for students across India</span>
+  <div class="footer-links"><a href="#subjects">Courses</a><a href="#tests">Test Series</a><a href="#">Telegram</a><a href="#">Privacy</a></div>
+</div></footer>
+<script>
+const ro=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');ro.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -24px 0px'});
+document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
+const posts=['SDM','District Magistrate','IPS Officer','Commissioner','Secretary','Civil Servant'];
+let pi=0,ci=0,del=false,pau=false;const te=document.getElementById('typed-post');
+function tp(){const c=posts[pi];if(pau){pau=false;del=true;setTimeout(tp,50);return}if(!del){te.textContent=c.substring(0,ci+1);ci++;if(ci===c.length){pau=true;setTimeout(tp,2400);return}setTimeout(tp,60+Math.random()*35)}else{te.textContent=c.substring(0,ci);ci--;if(ci<0){ci=0;del=false;pi=(pi+1)%posts.length;setTimeout(tp,450);return}setTimeout(tp,30)}}
+setTimeout(tp,700);
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20)},{passive:true});
+let vs=0,vt;
+const sm=[{t:'t1',m:'m1'},{t:'t2',m:'m2'},{t:'t3',m:'m3'},{t:'t4',m:'m4'},{t:'t5',m:'m5'}];
+const sn=['The Cost','The Retention','The Content','The Intelligence','The Mastery'];
+const tl=['₹3.5 lakh/year. A family\'s entire income — on one attempt.','56% forgotten in 1 hour. 79% gone in a month.','50+ Telegram groups. 200+ PDFs. Nothing targeted.','No analytics. No pattern detection. You prepare blind.','200+ hrs of recorded lectures. Passive. No mastery.'];
+const ml=['₹999/year. Your pathway starts from home. Free tier forever.','Active recall + spaced repetition. Pathway Intelligence™ at work.','4 textbooks merged. Every fact linked to PYQs on your pathway.','15-yr analytics + Repeat Radar. Pathway Intelligence™.','Read → Solve → Review → Master. Your pathway adapts to you.'];
+function goVS(n){vs=n;showVS(n);clearInterval(vt);vt=setInterval(nxVS,7000)}
+function nxVS(){vs=(vs+1)%5;showVS(vs)}
+function showVS(n){
+  for(let i=1;i<=5;i++){const t=document.getElementById('t'+i),m=document.getElementById('m'+i);if(t)t.classList.remove('active');if(m)m.classList.remove('active')}
+  document.getElementById(sm[n].t).classList.add('active');document.getElementById(sm[n].m).classList.add('active');
+  document.querySelectorAll('.vs-dot').forEach((d,i)=>d.classList.toggle('active',i===n));
+  document.querySelectorAll('.vs-flow-item').forEach((f,i)=>f.classList.toggle('active',i===n));
+  document.getElementById('trad-label').innerHTML='<span class="sn">0'+(n+1)+' — '+sn[n]+'</span>'+tl[n];
+  document.getElementById('mypcs-label').innerHTML='<span class="sn">0'+(n+1)+' — '+sn[n]+'</span>'+ml[n];
+  clearInterval(jTimer);clearInterval(nl);clearInterval(smartTimer);
+  if(n===0){animCost();animJourney()}if(n===1){animF();animSR()}if(n===2){animPDF();animTG();animN()}if(n===3)animSmart()
+}
+function animCost(){const items=[{id:'c1',v:165000},{id:'c2',v:96000},{id:'c3',v:60000},{id:'c4',v:30000}];items.forEach(it=>{const el=document.getElementById(it.id);if(el)el.textContent='₹0'});const tot=document.getElementById('c-total');if(tot)tot.textContent='₹0';setTimeout(()=>{items.forEach((it,i)=>{setTimeout(()=>{let c=0;const step=it.v/25;const t=setInterval(()=>{c+=step;if(c>=it.v){c=it.v;clearInterval(t)}const el=document.getElementById(it.id);if(el)el.textContent='₹'+Math.round(c).toLocaleString('en-IN');let sum=0;items.forEach(x=>{const e=document.getElementById(x.id);if(e)sum+=parseInt(e.textContent.replace(/[₹,]/g,''))||0});if(tot)tot.textContent='₹'+sum.toLocaleString('en-IN')},40)},i*300)})},300)}
+let jTimer;
+function animJourney(){clearInterval(jTimer);let step=0;const total=6;function show(s){for(let i=1;i<=total;i++){const f=document.getElementById('jf'+i);if(f)f.classList.toggle('active',i===s+1)}document.querySelectorAll('#jdots .journey-dot').forEach((d,i)=>d.classList.toggle('active',i===s));if(s===2){setTimeout(()=>{const b1=document.getElementById('jb1'),b2=document.getElementById('jb2'),b3=document.getElementById('jb3');if(b1)b1.style.width='72%';if(b2)b2.style.width='45%';if(b3)b3.style.width='20%'},200)}}show(0);jTimer=setInterval(()=>{step=(step+1)%total;show(step)},1800)}
+function animF(){const v=[100,58,44,33,25,21],mx=115;for(let i=1;i<=6;i++){const b=document.getElementById('tb'+i),c=document.getElementById('tc'+i);if(b)b.style.height='0';if(c&&i>1)c.textContent='—'}setTimeout(()=>{v.forEach((val,i)=>{setTimeout(()=>{const b=document.getElementById('tb'+(i+1)),c=document.getElementById('tc'+(i+1));if(b)b.style.height=(val/100*mx)+'px';if(c)c.textContent=val+'%'},i*280)})},200)}
+function animSR(){const v=[100,65,92,70,90,90],mx=115;for(let i=1;i<=6;i++){const b=document.getElementById('sb'+i),c=document.getElementById('sc'+i);if(b)b.style.height='0';if(c&&i>1)c.textContent='—'}setTimeout(()=>{v.forEach((val,i)=>{setTimeout(()=>{const b=document.getElementById('sb'+(i+1)),c=document.getElementById('sc'+(i+1));if(b){b.style.height=(val/100*mx)+'px';b.className='curve-bar sr-bar '+(val>=80?'high':'dip')}if(c)c.textContent=val+'%'},i*280)})},200)}
+function animPDF(){const r=document.getElementById('pdf-rain');if(!r)return;r.innerHTML='';['RS_Sharma.pdf','NCERT_XI.pdf','Thapar.pdf','VisionIAS.pdf','PYQ_2024.pdf','Laxmikanth.pdf','Geography.pdf','CA_Jan.pdf'].forEach((name,i)=>{const el=document.createElement('div');el.className='pdf-item';el.textContent=name;el.style.left=(Math.random()*60+5)+'%';el.style.animationDelay=(i*0.28)+'s';r.appendChild(el)})}
+function animTG(){const body=document.getElementById('tg-body');if(!body)return;body.innerHTML='';const unread=document.getElementById('tg-unread');if(unread)unread.style.animation='none';const msgs=[{type:'them',name:'Rajesh',text:'bhai ye GS2 ka notes kahan milega?',time:'9:41 PM'},{type:'them',name:'Priya',text:'maine 3 group se download kiya, sab alag hai 😭',time:'9:42 PM'},{type:'me',name:'',text:'koi Economy pdf share karo pls',time:'9:43 PM'},{type:'them',name:'Admin',text:'[PDF] GS_Notes_Final_FINAL_v3(2).pdf',time:'9:44 PM'},{type:'them',name:'Aman',text:'ye purana hai bhai 😂 2022 wala',time:'9:44 PM'},{type:'them',name:'Vikram',text:'koi reliable source batao yaar 😩',time:'9:45 PM'}];msgs.forEach((m,i)=>{const el=document.createElement('div');el.className='tg-msg '+m.type;el.style.animationDelay=(i*0.5)+'s';el.innerHTML=(m.name?'<span class="tg-name">'+m.name+'</span>':'')+m.text+'<span class="tg-time">'+m.time+'</span>';body.appendChild(el)});if(unread){setTimeout(()=>{unread.style.animation='tgSlide .3s var(--ease) forwards'},3500)}}
+let nl;function animN(){clearInterval(nl);const f=['mf1','mf2','mf3','mf4'];let idx=0;function cy(){f.forEach(id=>{const e=document.getElementById(id);if(e)e.classList.remove('hl')});const e=document.getElementById(f[idx]);if(e)e.classList.add('hl');idx=(idx+1)%f.length}cy();nl=setInterval(cy,1300)}
+let smartTimer;function animSmart(){clearInterval(smartTimer);const feats=['sf1','sf2','sf3'];let idx=0;function cy(){feats.forEach(id=>{const e=document.getElementById(id);if(e)e.classList.remove('active-f')});const e=document.getElementById(feats[idx]);if(e)e.classList.add('active-f');idx=(idx+1)%feats.length}cy();smartTimer=setInterval(cy,2200)}
+animCost();animJourney();vt=setInterval(nxVS,7000);
+const vg=document.querySelector('.vs-grid');if(vg){vg.addEventListener('mouseenter',()=>clearInterval(vt));vg.addEventListener('mouseleave',()=>{vt=setInterval(nxVS,7000)})}
+function toggleFaq(el){el.classList.toggle('open');el.nextElementSibling.classList.toggle('show')}
+const courses=[{name:'Ancient History',code:'AH',meta:'Complete pilot — Art & Culture included',exams:'uppcs,bpsc,mppcs,ras',status:'live',sl:'PILOT · LIVE',pyqs:51,units:'Stone Age <span>✓</span> · Chalcolithic <span>✓</span> · Harappan <span class="next">→</span> · Vedic · Mauryan',radar:'Mauryan Empire — 7× asked, due.'},{name:'Medieval History',code:'MH',meta:'Sultanate to Mughals',exams:'uppcs,bpsc,mppcs,ras',status:'soon',sl:'May',pyqs:180},{name:'Modern History',code:'MO',meta:'1757–Independence',exams:'uppcs,bpsc,mppcs,ras',status:'soon',sl:'May',pyqs:210},{name:'Indian Polity',code:'PO',meta:'Constitution + Governance',exams:'uppcs,bpsc,mppcs,ras',status:'partial',sl:'PYQs ready',pyqs:559,radar:'FR — repeat cycle: 2 yrs'},{name:'Geography',code:'GE',meta:'Physical + Indian',exams:'uppcs,bpsc,mppcs,ras',status:'soon',sl:'June',pyqs:150},{name:'Economy',code:'EC',meta:'Indian Eco + Budget',exams:'uppcs,bpsc,mppcs,ras',status:'soon',sl:'July',pyqs:120},{name:'Environment',code:'EN',meta:'Ecology + Bio',exams:'uppcs,bpsc,mppcs,ras',status:'soon',sl:'July',pyqs:80},{name:'Science & Tech',code:'ST',meta:'GS basics + current',exams:'uppcs,bpsc,mppcs,ras',status:'soon',sl:'Aug',pyqs:90},{name:'Current Affairs',code:'CA',meta:'Daily + Monthly',exams:'uppcs,bpsc,mppcs,ras',status:'soon',sl:'Aug',pyqs:0},{name:'Ethics',code:'ET',meta:'GS-IV · Values',exams:'uppcs,bpsc,mppcs,ras',status:'soon',sl:'Sep',pyqs:60},{name:'UP Special',code:'UP',meta:'UP History, Geo, Eco',exams:'uppcs',status:'partial',sl:'UPPCS only',pyqs:0,special:true},{name:'Bihar Special',code:'BR',meta:'Bihar History, Geo',exams:'bpsc',status:'partial',sl:'BPSC only',pyqs:0,special:true},{name:'MP Special',code:'MP',meta:'MP History, Geo',exams:'mppcs',status:'partial',sl:'MPPCS only',pyqs:0,special:true},{name:'RJ Special',code:'RJ',meta:'RJ History, Geo',exams:'ras',status:'partial',sl:'RAS only',pyqs:0,special:true}];
+function filterExam(exam,btn){document.querySelectorAll('.exam-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');const grid=document.getElementById('courses-grid');const filtered=courses.filter(c=>exam==='all'||c.exams.includes(exam));grid.innerHTML=filtered.map(c=>{const sc=c.status==='live'?'live':c.status==='partial'?'partial':'soon';const isSoon=c.status==='soon';const radarSvg='<svg class="ico-svg sm" viewBox="0 0 24 24" style="color:var(--red)"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>';return'<div class="course-card'+(isSoon?' coming':'')+(c.special?' special':'')+'">'+'<div class="cc-top"><span class="cc-icon-letter">'+c.code+'</span><span class="cc-name">'+c.name+'</span><span class="cc-status '+sc+'">'+c.sl+'</span></div>'+'<div class="cc-meta">'+c.meta+(c.pyqs?' · <span class="cc-stat-n">'+c.pyqs+'</span> PYQs':'')+'</div>'+(c.units?'<div class="cc-units">'+c.units+'</div>':'')+(c.radar?'<div class="cc-radar">'+radarSvg+' '+c.radar+'</div>':'')+'</div>'}).join('')}
+filterExam('all',document.querySelector('.exam-pill.active'));
+document.querySelectorAll('.rv:not(.vis)').forEach(el=>ro.observe(el));
+</script>
+</body>
+</html>
